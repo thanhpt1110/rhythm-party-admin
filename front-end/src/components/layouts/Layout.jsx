@@ -6,11 +6,11 @@ import Sidebar from "./Sidebar";
 
 const Layout = () => {
 	return (
-		<div className="flex flex-row bg-neutral-100 h-screen w-screen overflow-hidden">
+		<div className="flex flex-row h-screen w-screen overflow-hidden">
 			<Sidebar />
-            <div className="p-4">
+            <div className="flex flex-col flex-1">
                 <Header />
-                <div>
+                <div className="flex-1 p-5 min-h-0 overflow-auto">
                     {<Outlet />}
                 </div>
                 <Footer />
