@@ -30,7 +30,7 @@ const Sidebar = () => {
                         <i class="ri-logout-box-r-line" />
                     </span> 
                     <span className='text-lg'>
-                        Logout
+                        Sign Out
                     </span>
 				</div>
             </div>

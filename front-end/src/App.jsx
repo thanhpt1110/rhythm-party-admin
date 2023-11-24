@@ -1,4 +1,5 @@
 import 'remixicon/fonts/remixicon.css'
+import 'flowbite'
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import Dashboard from './components/contents/Dashboard';

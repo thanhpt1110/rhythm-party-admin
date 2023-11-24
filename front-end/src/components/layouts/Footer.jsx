@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer className='flex flex-wrap items-center justify-between border px-5 py-5 mx-5 my-5 rounded-lg shadow-md'>
+        <footer className='bg-white flex flex-wrap items-center justify-between border px-5 py-5 mx-5 my-5 rounded-lg shadow-md'>
             <ul className='flex gap-5'>
                 <li className='hover:cursor-pointer hover:underline'>Terms and conditions</li>
                 <li className='hover:cursor-pointer hover:underline'>Privacy Policy</li>
