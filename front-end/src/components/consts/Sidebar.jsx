@@ -6,22 +6,10 @@ export const DASHBOARD_SIDEBAR_LINKS = [
         icon: <i class="ri-dashboard-3-line" />
     },
     {
-        key: 'inbox',
-        label: 'Inbox',
-        path: '/inboxes',
-        icon: <i class="ri-question-answer-line" />
-    },
-    {
         key: 'pending-approval',
         label: 'Pending Approval',
         path: '/pending-approval',
         icon: <i class="ri-stack-line" />
-    },
-    {
-        key: 'account',
-        label: 'Account',
-        path: '/account',
-        icon: <i class="ri-account-circle-line" />
     },
     {
         key: 'song',
@@ -46,6 +34,18 @@ export const DASHBOARD_SIDEBAR_LINKS = [
         label: 'Room',
         path: '/rooms',
         icon: <i class="ri-slideshow-3-line" />
+    },
+    {
+        key: 'user',
+        label: 'User',
+        path: '/users',
+        icon: <i class="ri-account-circle-line" />
+    },
+    {
+        key: 'inbox',
+        label: 'Inbox',
+        path: '/inboxes',
+        icon: <i class="ri-question-answer-line" />
     },
 ];
 

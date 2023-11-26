@@ -2,11 +2,11 @@ import 'remixicon/fonts/remixicon.css'
 import 'flowbite'
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
-import Dashboard from './components/contents/Dashboard';
+import Dashboard from './components/contents/dashboard/Dashboard';
 import Login from './pages/Login';
 import Inbox from './components/contents/Inbox';
 import PendingApproval from './components/contents/PendingApproval'
-import Account from './components/contents/Account';
+import User from './components/contents/User';
 import Song from './components/contents/Song';
 import Playlist from './components/contents/Playlist';
 import Artist from './components/contents/Artist';
@@ -21,7 +21,7 @@ function App() {
                 <Route index element={<Dashboard />} />
                 <Route path='inboxes' element={<Inbox />} />
                 <Route path='pending-approval' element={<PendingApproval />} />
-                <Route path='account' element={<Account />} />
+                <Route path='users' element={<User />} />
                 <Route path='songs' element={<Song />} />
                 <Route path='playlist' element={<Playlist />} />
                 <Route path='artists' element={<Artist />} />

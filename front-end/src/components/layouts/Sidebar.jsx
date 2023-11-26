@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../../assets/logo.png';
-import { DASHBOARD_SIDEBAR_BOTTOM_LINKS, DASHBOARD_SIDEBAR_LINKS } from '../consts/Navigation';
+import { DASHBOARD_SIDEBAR_BOTTOM_LINKS, DASHBOARD_SIDEBAR_LINKS } from '../consts/Sidebar';
 import {Link, useLocation} from 'react-router-dom'
 import classNames from 'classnames'
 

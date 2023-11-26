@@ -10,7 +10,7 @@ const Footer = () => {
                 <li className='hover:cursor-pointer hover:underline'>About</li>
             </ul>
             <div className='flex gap-7 text-xl'>
-                <a href="https://github.com/thanhpt1110/rhythm-party"><i class="ri-github-fill" /></a>
+                <a href="https://github.com/thanhpt1110/rhythm-party" target='blank'><i class="ri-github-fill" /></a>
                 <a href=""><i class="ri-facebook-box-line" /></a>
                 <a href=""><i class="ri-instagram-line" /></a>
                 <a href=""><i class="ri-twitter-line" /></a>

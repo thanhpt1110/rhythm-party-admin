@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <div className='h-20 px-5 flex items-center justify-between border-b border-zinc-300'>
             <div className='relative'>
-                <i class="ri-search-line absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 text-2xl" />
+                <i className="ri-search-line absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 text-2xl" />
                 <input type="text" name="search" id="search"
                     placeholder='Search...'
                     className='text-md pl-14 py-3 px-5 w-80 focus:outline-none focus:border-violet-950 active:outline-none border border-zinc-400 rounded-lg' />
@@ -26,7 +26,7 @@ const Header = () => {
                                     'group inline-flex items-center rounded-md p-1.5 hover:bg-gray-200 hover:text-gray-600'
                                 )}
                             >
-                                <i class="ri-global-line" />
+                                <i className='ri-global-line' />
                             </Popover.Button>
                             <Transition
                                 as={Fragment}
@@ -66,9 +66,9 @@ const Header = () => {
                     </div>
                 </button>
 
-                <div id="tooltip-bottom" role="tooltip" class=" absolute z-10 invisible inline-block px-4 py-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                <div id="tooltip-bottom" role="tooltip" className="absolute z-10 invisible inline-block px-4 py-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                     Phan Tuấn Thành
-                    <div class="tooltip-arrow" data-popper-arrow></div>
+                    <div className="tooltip-arrow" data-popper-arrow></div>
                 </div>
 
             </div>
