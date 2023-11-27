@@ -12,7 +12,7 @@ const ButtonDashboard = () => {
                 </div>
                 <div className='flex flex-row justify-between px-6 py-4'>
                     <div className='flex items-center justify-center w-14 h-14 rounded-full text-pink-500 bg-pink-100 dark:bg-pink-900 dark:bg-opacity-40 relative text-center'>
-                        <i className="ri-shopping-cart-line text-2xl"></i>
+                    <i class="ri-user-3-line text-2xl"></i>
                     </div>
                     <div className='self-center text-3xl'>
                         432

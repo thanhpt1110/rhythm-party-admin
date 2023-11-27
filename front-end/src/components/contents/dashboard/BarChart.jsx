@@ -62,7 +62,7 @@ const BarChart = ({ data, labels }) => {
 
     // Return value for Component
     return (
-        <canvas ref={chartRef} className='bg-white rounded-xl max-h-460px max-w-4xl px-10 pt-16 pb-5' />
+        <canvas ref={chartRef} className='bg-white rounded-xl max-h-460px max-w-screen px-10 pt-16 pb-5' />
     );
 };
 
