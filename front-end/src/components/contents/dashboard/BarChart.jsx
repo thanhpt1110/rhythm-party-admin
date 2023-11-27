@@ -1,9 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 
 const BarChart = ({ data, labels }) => {
     const chartRef = useRef(null);
 
+    // Tính toán stepSize
+    const stepSize = useMemo(() => {
+        const max = Math.max(...data);
+        const min = Math.min(...data);
+        return Math.round((max - min) / 4);
+    }, [data]);
+    
     // Define useEffect function
     useEffect(() => {
         if (chartRef && chartRef.current) {
@@ -14,7 +21,8 @@ const BarChart = ({ data, labels }) => {
                     datasets: [{
                         label: ' Users',
                         data: data,
-                        backgroundColor: 'rgb(145, 107, 206)'
+                        backgroundColor: 'rgb(145, 107, 206)',
+                        barThickness: 50, 
                     }]
                 },
                 options: {
@@ -36,29 +44,32 @@ const BarChart = ({ data, labels }) => {
                                 }
                             },
                             grid: {
-                                display: false
-                            }
+                                display: false, 
+                            },
                         },
                         y: {
+                            border: {
+                                dash: [10, 12],
+                                color: 'black',
+                            },
                             ticks: {
                                 font: {
                                     size: 20,
-                                }
+                                },
+                                stepSize: stepSize,
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.3)',
                             },
                         },
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-
-                                }
-                            }]
-                        }
                     }
-                });
-
+                }
+            });
+    
             return () => newChartInstance.destroy();
         }
-    }, [data, labels]);
+    }, [data, labels, stepSize]);    
 
     // Return value for Component
     return (

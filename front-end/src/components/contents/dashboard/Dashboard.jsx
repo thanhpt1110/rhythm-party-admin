@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 const Dashboard = () => {
     const classTitle = 'text-xl font-bold ml-1 py-5'
-    const data = [12, 19, 3, 5, 2, 3];
+    const data = [27, 19, 3, 5, 2, 3];
     const labels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
     return (
         <div>
