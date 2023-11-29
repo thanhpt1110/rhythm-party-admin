@@ -9,19 +9,19 @@ const buttonLogoutClass = 'cursor-pointer flex items-center gap-2 text-red-500 f
 
 const Sidebar = () => {
     return (
-        <div className='bg-violet-900 flex flex-col w-[300px]'>
+        <div className='bg-violet-900 flex flex-col min-w-fit min-h-screen'>
             <div className='flex items-center gap-2 px-6 py-5 bg-violet-950 flex-shrink-0'>
                 <img src={Logo} alt='WebsiteLogo' className='h-10 w-10' />
                 <div className='self-center text-3xl font-semibold whitespace-nowrap text-white'>
                     Rhythm Party
                 </div>
             </div>
-            <div className='flex flex-1 flex-col px-5 gap-2 py-2'>
+            <div className='flex flex-1 flex-col px-5 gap-2 py-2 bg-violet-900'>
                 {DASHBOARD_SIDEBAR_LINKS.map((link) => (
                     <SidebarLink key={link.key} link={link} />
                 ))}
             </div>
-            <div className='flex flex-col px-5 gap-2 py-2 pt-5 border-t border-white'>
+            <div className='flex flex-col px-5 gap-2 py-2 pt-5 border-t border-white bg-violet-900'>
                 {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((link) => (
                     <SidebarLink key={link.key} link={link} />
                 ))}

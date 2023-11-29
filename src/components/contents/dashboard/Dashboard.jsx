@@ -1,6 +1,7 @@
 import React from 'react'
 import ButtonDashboard from './ButtonDashboard'
 import BarChart from './BarChart'
+import PieChart from './PieChart'
 
 const Dashboard = () => {
     const classTitle = 'text-xl font-bold ml-1 py-5'
@@ -15,7 +16,13 @@ const Dashboard = () => {
                 {buttons.map((_, index) => <ButtonDashboard key={index} />)}
             </div>
             <div className={`${classTitle} pt-0`}>Charts</div>
-            <BarChart data={data} labels={labels} />
+            <div className='flex flex-row'>
+                <div className='flex-1'>
+                <BarChart data={data} labels={labels} />
+
+                </div>
+                <PieChart data={data} labels={labels} />
+            </div>
         </div>
     )
 }

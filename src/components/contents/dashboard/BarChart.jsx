@@ -72,7 +72,7 @@ const BarChart = ({ data, labels }) => {
                     2023
                 </div>
             </div>
-            <canvas ref={chartRef} className='bg-white rounded-xl max-h-460px px-10 pt-16 pb-5' />;
+            <canvas ref={chartRef} className='bg-white rounded-xl max-h-460px px-10 pt-16 pb-5' />
         </div>
     )
 };
