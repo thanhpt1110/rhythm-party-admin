@@ -9,7 +9,7 @@ const Dashboard = () => {
     const buttons = [1, 2, 3, 4];
 
     return (
-        <div className='flex-shrink max-w-full w-full'>
+        <div className='flex-shrink max-w-full w-full '>
             <div className={classTitle}>Statistic</div>
             <div className='flex items-center justify-between gap-10'>
                 {buttons.map((_, index) => <ButtonDashboard key={index} />)}
