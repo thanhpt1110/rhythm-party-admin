@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
+import ComboBox from './ComboBox';
 
 const PieChart = ({ data, labels }) => {
     const chartRef = useRef(null);
@@ -37,9 +38,9 @@ const PieChart = ({ data, labels }) => {
     return (
         <div className='relative bg-white px-10 py-10 mb-10 rounded-xl shadow-lg h-[400px] 
                         2xl:w-[500px]'>
-            {/* <div className='absolute text-xl text-violet-900 font-bold px-10 py-4'>
-                Pie Chart
-            </div> */}
+            <div className='absolute right-10 top-5'>
+                <ComboBox options={['2023', '2022']}/>    
+            </div>  
             <canvas ref={chartRef} />
         </div>
     )

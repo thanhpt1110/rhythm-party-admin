@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
+import ComboBox from './ComboBox';
 
 const BarChart = ({ data, labels }) => {
     const chartRef = useRef(null);
@@ -59,9 +60,12 @@ const BarChart = ({ data, labels }) => {
     }, [data, labels, stepSize]);
 
     return (
-        <div className='relative bg-white px-10 py-10 mb-10 rounded-xl shadow-lg
+        <div className='relative bg-white px-10 pt-20 pb-5 mb-10 rounded-xl shadow-lg
                         h-[400px] 
                         2xl:w-[1000px]'>
+            <div className='absolute right-10 top-5'>
+                <ComboBox options={['2023', '2022']}/>    
+            </div>                   
             {/* <div className='absolute text-xl text-violet-900 font-bold px-10 py-4'>
                 Bar Chart
             </div> */}
