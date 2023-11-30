@@ -2,7 +2,7 @@ import 'remixicon/fonts/remixicon.css'
 import 'flowbite'
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
-import Dashboard from './components/contents/dashboard/Dashboard';
+import Dashboard from './components/contents/Dashboard';
 import Login from './pages/Login';
 import Inbox from './components/contents/Inbox';
 import PendingApproval from './components/contents/PendingApproval'
@@ -13,6 +13,7 @@ import Artist from './components/contents/Artist';
 import Room from './components/contents/Room';
 import Setting from './components/contents/Setting';
 import Support from './components/contents/Support';
+import React from 'react';
 
 function App() {
     return (

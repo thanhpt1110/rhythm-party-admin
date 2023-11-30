@@ -6,8 +6,8 @@ import Sidebar from "./Sidebar";
 
 const Layout = () => {
     return (
-        <div className="flex flex-row h-screen w-screen overflow-hidden">
-            <div className="flex flex-col w-fit h-full overflow-y-auto">
+        <div className="flex flex-row h-screen w-screen overflow-x-hidden">
+            <div className="w-fit h-full overflow-y-auto">
                 <Sidebar />
             </div>
             <div className="flex flex-col flex-1 h-full overflow-y-auto bg-zinc-100">
@@ -22,4 +22,3 @@ const Layout = () => {
 };
 
 export default Layout
-

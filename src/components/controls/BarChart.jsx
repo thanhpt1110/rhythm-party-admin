@@ -25,19 +25,15 @@ const BarChart = ({ data, labels }) => {
                 datasets: [{
                     label: ' Users',
                     data,
-                    backgroundColor: 'rgb(145, 107, 206)',
+                    backgroundColor: 'rgb(96, 49, 206)',
                     borderColor: "rgba(0,0,0,0)",
                     barPercentage: 0.8,
-                    categoryPercentage: 0.5,
-                }, {
-                    label: ' Users',
-                    data,
-                    backgroundColor: 'rgb(0, 107, 206)',
-                    barPercentage: 0.8,
-                    categoryPercentage: 0.5,
+                    categoryPercentage: 0.6,
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false, 
                 plugins: {
                     legend: {
                         labels: { font: { size: 20 } },
@@ -63,16 +59,13 @@ const BarChart = ({ data, labels }) => {
     }, [data, labels, stepSize]);
 
     return (
-        <div className='relative max-w-4xl'>
-            <div className='absolute text-xl text-violet-900 font-bold px-10 py-4'>
+        <div className='relative bg-white px-10 py-10 mb-10 rounded-xl shadow-lg
+                        h-[400px] 
+                        2xl:w-[1000px]'>
+            {/* <div className='absolute text-xl text-violet-900 font-bold px-10 py-4'>
                 Bar Chart
-            </div>
-            <div className='absolute right-12 top-4 border border-violet-900 rounded-md px-5 py-1 cursor-pointer'>
-                <div className='text-violet-900'>
-                    2023
-                </div>
-            </div>
-            <canvas ref={chartRef} className='bg-white rounded-xl max-h-460px px-10 pt-16 pb-5' />
+            </div> */}
+            <canvas ref={chartRef}/>
         </div>
     )
 };

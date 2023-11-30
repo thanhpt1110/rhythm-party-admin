@@ -14,15 +14,17 @@ const PieChart = ({ data, labels }) => {
                 datasets: [{
                     label: 'Users',
                     data,
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
-                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    backgroundColor: ['rgb(76, 29, 149)', 'rgb(145, 107, 206)', 'rgb(200, 160, 220)'],
+                    borderColor: ['rgb(76, 29, 149)', 'rgb(145, 107, 206)', 'rgb(200, 160, 220)'],
                     borderWidth: 1,
                 }]
             },
-            options: {
+            options: {  
+                responsive: true,
+                maintainAspectRatio: false, 
                 plugins: {
                     legend: {
-                        labels: { font: { size: 20 } },
+                        labels: { font: { size: 16 }, padding: 30 },
                         position: 'bottom'
                     }
                 },
@@ -33,16 +35,12 @@ const PieChart = ({ data, labels }) => {
     }, [data, labels]);
 
     return (
-        <div className='relative max-w-fit'>
-            <div className='absolute text-xl text-violet-900 font-bold px-10 py-4'>
+        <div className='relative bg-white px-10 py-10 mb-10 rounded-xl shadow-lg h-[400px] 
+                        2xl:w-[500px]'>
+            {/* <div className='absolute text-xl text-violet-900 font-bold px-10 py-4'>
                 Pie Chart
-            </div>
-            <div className='absolute right-12 top-4 border border-violet-900 rounded-md px-5 py-1 cursor-pointer'>
-                <div className='text-violet-900'>
-                    2023
-                </div>
-            </div>
-            <canvas ref={chartRef} className='bg-white rounded-xl max-h-460px px-10 pt-16 pb-5' />
+            </div> */}
+            <canvas ref={chartRef} />
         </div>
     )
 };

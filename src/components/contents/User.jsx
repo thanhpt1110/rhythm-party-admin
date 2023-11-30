@@ -1,8 +1,11 @@
 import React from 'react'
+import DataTable from '../controls/DataTable'
 
 const User = () => {
   return (
-    <div>User</div>
+    <div>
+        <DataTable />
+    </div>
   )
 }
 
