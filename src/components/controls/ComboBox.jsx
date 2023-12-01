@@ -9,7 +9,7 @@ const ComboBox = ({ options }) => {
                 <select
                     value={selectedOption}
                     onChange={(e) => setSelectedOption(e.target.value)}
-                    className="w-full px-4 py-2 text-base text-violet-900 border border-violet-950 border-2 rounded-lg focus:shadow-outline"
+                    className="w-full px-4 py-2 text-base text-violet-900 border-violet-950 border-2 rounded-lg focus:shadow-outline"
                 >
                     {options.map((option, index) => (
                         <option key={index} value={option}>

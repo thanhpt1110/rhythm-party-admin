@@ -1,7 +1,7 @@
 import React from 'react'
-import ButtonDashboard from '../controls/ButtonDashboard'
-import BarChart from '../controls/BarChart'
-import PieChart from '../controls/PieChart'
+import ButtonDashboard from '../controls/buttons/ButtonDashboard'
+import BarChart from '../controls/charts/BarChart'
+import PieChart from '../controls/charts/PieChart'
 
 const Dashboard = () => {
     const classTitle = 'text-xl font-bold ml-1 py-5'

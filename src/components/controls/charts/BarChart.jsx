@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
-import ComboBox from './ComboBox';
+import ComboBox from '../ComboBox';
 
 const BarChart = ({ data, labels }) => {
     const chartRef = useRef(null);
@@ -25,7 +25,7 @@ const BarChart = ({ data, labels }) => {
                 labels,
                 datasets: [{
                     label: ' Users',
-                    data,
+                    data: data, 
                     backgroundColor: 'rgb(96, 49, 206)',
                     borderColor: "rgba(0,0,0,0)",
                     barPercentage: 0.8,
@@ -37,19 +37,19 @@ const BarChart = ({ data, labels }) => {
                 maintainAspectRatio: false, 
                 plugins: {
                     legend: {
-                        labels: { font: { size: 20 } },
+                        labels: { font: { size: 20 }, color: 'black'},
                         position: 'bottom'
                     }
                 },
                 scales: {
                     x: {
-                        ticks: { font: { size: 16 } },
+                        ticks: { font: { size: 16 }, color: 'black'},
                         grid: { display: false },
                         offset: true,
                     },
                     y: {
                         border: { dash: [10, 12], color: 'black' },
-                        ticks: { font: { size: 20 }, stepSize },
+                        ticks: { font: { size: 20 }, color: 'black', stepSize },
                         grid: { display: true, color: 'rgba(0, 0, 0, 0.3)' },
                     },
                 }

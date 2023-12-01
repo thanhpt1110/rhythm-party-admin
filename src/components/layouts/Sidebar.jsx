@@ -9,7 +9,7 @@ const buttonLogoutClass = 'cursor-pointer flex items-center gap-2 text-red-500 f
 
 const Sidebar = () => {
     return (
-        <div className='bg-violet-900 flex flex-col min-w-fit min-h-screen'>
+        <div className='bg-violet-900 flex flex-col min-w-[300px] min-h-screen'>
             <div className='flex items-center gap-2 px-6 py-5 bg-violet-950 flex-shrink-0'>
                 <img src={Logo} alt='WebsiteLogo' className='h-10 w-10' />
                 <div className='self-center text-3xl font-semibold whitespace-nowrap text-white'>

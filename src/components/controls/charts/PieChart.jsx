@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
-import ComboBox from './ComboBox';
+import ComboBox from '../ComboBox';
 
 const PieChart = ({ data, labels }) => {
     const chartRef = useRef(null);
@@ -25,7 +25,7 @@ const PieChart = ({ data, labels }) => {
                 maintainAspectRatio: false, 
                 plugins: {
                     legend: {
-                        labels: { font: { size: 16 }, padding: 30 },
+                        labels: { font: { size: 16 }, padding: 30, color: 'black'},
                         position: 'bottom'
                     }
                 },

@@ -11,4 +11,16 @@
 			sans-serif;
 		line-height: 1.3;
 	}
+    table{
+    }
+    tbody tr{
+        @apply hover:bg-white
+    }
+    th{
+        @apply px-4 py-3 text-left text-sm uppercase text-gray-500
+    }
+    td{
+        @apply px-4 py-4 font-medium text-lg text-gray-800 border-t border-b border-gray-300 
+    }
+
 }
