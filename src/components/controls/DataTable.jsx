@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import ButtonUpdate from './buttons/ButtonUpdate'
 import ButtonDelete from './buttons/ButtonDelete'
-import ModalAddUser from './modals/ModalAddUser'
+import ModalAddUser from './modals/ModalUser'
 
-const DataTable = ({ columns, data }) => {
+const DataTable = ({ columns, data, onEdit, onDelete }) => {
     return (
         <table className='border border-gray-300'>
             <thead>
@@ -13,13 +13,13 @@ const DataTable = ({ columns, data }) => {
                     ))}
                     <th className='w-36'/>
                     <th className='w-40'/>
-                </tr>
+                </tr>   
             </thead>
             <tbody>
                 {data.map((row, index) => (
                     <tr key={index}>
                         {columns.map((col, index) => (
-                            <td key={index}>{row[col]}</td>
+                            <td key={index}>{row[col]}</td> 
                         ))}
                         <td className='text-right'>
                             <ButtonUpdate ModalComponent={ModalAddUser} />
@@ -34,4 +34,4 @@ const DataTable = ({ columns, data }) => {
     )
 }
 
-export default DataTable
+export default memo(DataTable)

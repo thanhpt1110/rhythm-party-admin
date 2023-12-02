@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const SearchBox = ({ onSearch }) => {
     const handleInputChange = (event) => {
@@ -16,4 +16,4 @@ const SearchBox = ({ onSearch }) => {
     )
 }
 
-export default SearchBox
+export default memo(SearchBox)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 
 const ComboBox = ({ options }) => {
     const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -22,4 +22,4 @@ const ComboBox = ({ options }) => {
     );
 }
 
-export default ComboBox;
+export default memo(ComboBox)

@@ -3,12 +3,15 @@ import DataTable from '../controls/DataTable';
 import SearchBox from 'components/controls/SearchBox';
 import ButtonAdd from 'components/controls/buttons/ButtonAdd';
 import ButtonExport from 'components/controls/buttons/ButtonExport';
-import ModalAddUser from 'components/controls/modals/ModalAddUser';
+import ModalAddUser from 'components/controls/modals/ModalUser';
 
 const Song = () => {
     const columns = ['Song', 'Artist', 'Genre', 'Likes', 'Comments'];
     const data = [
         { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12'},
+        { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12'},
+        { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12'},
+        { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12'}
         // Thêm các đối tượng khác vào đây
     ];
 

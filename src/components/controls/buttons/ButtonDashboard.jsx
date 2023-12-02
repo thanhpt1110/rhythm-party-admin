@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const ButtonDashboard = () => {
     return (
@@ -29,4 +29,4 @@ const ButtonDashboard = () => {
     )
 }
 
-export default ButtonDashboard
+export default memo(ButtonDashboard)
