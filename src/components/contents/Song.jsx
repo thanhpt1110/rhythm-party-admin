@@ -51,7 +51,7 @@ const Song = () => {
                 <SearchBox onSearch={setSearchTerm} /> 
                 <div className='flex flex-row gap-5'>
                     <ButtonAdd label={'user'} ModalComponent={ModalAddUser} />
-                    <ButtonExport onClick={handleExport} />
+                    <ButtonExport />
                 </div>
             </div>
             <DataTable columns={columns} data={data}/>

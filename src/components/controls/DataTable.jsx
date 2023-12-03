@@ -1,9 +1,20 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import ButtonUpdate from './buttons/ButtonUpdate'
 import ButtonDelete from './buttons/ButtonDelete'
-import ModalAddUser from './modals/ModalUser'
+import ModalUser from './modals/ModalUser'
+import ModalDelete from './modals/ModalDelete'
 
-const DataTable = ({ columns, data, onEdit, onDelete }) => {
+const modalMap = {
+    user: ModalUser,
+    // song: ModalSong, 
+    default: ModalUser
+};
+
+const DataTable = ({ columns, data, contextType }) => {
+    const ModalComponent = useMemo(() => {
+        return modalMap[contextType] || modalMap.default;
+    }, [contextType]);
+
     return (
         <table className='border border-gray-300'>
             <thead>
@@ -11,21 +22,21 @@ const DataTable = ({ columns, data, onEdit, onDelete }) => {
                     {columns.map((col, index) => (
                         <th key={index}>{col}</th>
                     ))}
-                    <th className='w-36'/>
-                    <th className='w-40'/>
-                </tr>   
+                    <th className='w-36' />
+                    <th className='w-40' />
+                </tr>
             </thead>
             <tbody>
                 {data.map((row, index) => (
                     <tr key={index}>
                         {columns.map((col, index) => (
-                            <td key={index}>{row[col]}</td> 
+                            <td key={index}>{row[col]}</td>
                         ))}
                         <td className='text-right'>
-                            <ButtonUpdate ModalComponent={ModalAddUser} />
+                            <ButtonUpdate ModalComponent={ModalComponent} />
                         </td>
                         <td>
-                            <ButtonDelete ModalComponent={ModalAddUser} />
+                            <ButtonDelete ModalComponent={ModalDelete} />
                         </td>
                     </tr>
                 ))}

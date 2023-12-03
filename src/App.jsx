@@ -14,6 +14,7 @@ import Room from './components/contents/Room';
 import Setting from './components/contents/Setting';
 import Support from './components/contents/Support';
 import React from 'react';
+import { UserProvider } from 'contexts/UserContext';
 
 function App() {
     return (
@@ -22,7 +23,11 @@ function App() {
                 <Route index element={<Dashboard />} />
                 <Route path='inboxes' element={<Inbox />} />
                 <Route path='pending-approval' element={<PendingApproval />} />
-                <Route path='users' element={<User />} />
+                <Route path='users' element={
+                    <UserProvider>
+                        <User />
+                    </UserProvider>
+                } />
                 <Route path='songs' element={<Song />} />
                 <Route path='playlist' element={<Playlist />} />
                 <Route path='artists' element={<Artist />} />
@@ -30,7 +35,7 @@ function App() {
                 <Route path='settings' element={<Setting />} />
                 <Route path='support' element={<Support />} />
             </Route>
-            <Route path='login' element={<Login />}/>
+            <Route path='login' element={<Login />} />
         </Routes>
     );
 }

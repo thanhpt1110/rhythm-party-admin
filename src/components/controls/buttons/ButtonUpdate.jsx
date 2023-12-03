@@ -1,9 +1,12 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useContext, useState } from 'react'
+import { UserContext } from 'contexts/UserContext';
 
 const ButtonUpdate = ({ ModalComponent }) => {
+    const { setModalMode } = useContext(UserContext);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenModal = () => {
+        setModalMode('update');
         setIsOpen(true);
     }
 

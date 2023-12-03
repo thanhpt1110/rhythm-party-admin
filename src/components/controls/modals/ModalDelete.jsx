@@ -2,14 +2,23 @@ import React, { useContext, useState } from 'react';
 import ButtonSave from '../buttons/ButtonSave';
 import ButtonCancel from '../buttons/ButtonCancel';
 import { UserContext } from 'contexts/UserContext';
+import { GlobalContext } from 'contexts/GlobalContext';
 
-const ModalUser = ({ onClose }) => {
-    const { handleSaveData } = useContext(UserContext);
+const contextMap = {
+    user: UserContext,
+    // song: SongContext
+};
+
+const ModalDelete = ({ onClose }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const { contextType } = useContext(GlobalContext);
+    const Context = contextMap[contextType];
+    const { handleDeleteData } = useContext(Context);
+
     const handleSave = () => {
-        handleSaveData();
+        handleDeleteData();
         onClose();
     };
 
@@ -40,4 +49,4 @@ const ModalUser = ({ onClose }) => {
     );
 };
 
-export default ModalUser;
+export default ModalDelete;
