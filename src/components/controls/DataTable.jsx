@@ -1,16 +1,19 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, useContext, useMemo } from 'react'
 import ButtonUpdate from './buttons/ButtonUpdate'
 import ButtonDelete from './buttons/ButtonDelete'
 import ModalUser from './modals/ModalUser'
+import ModalSong from './modals/ModalSong'
 import ModalDelete from './modals/ModalDelete'
+import { GlobalContext } from 'contexts/GlobalContext'
 
 const modalMap = {
     user: ModalUser,
-    // song: ModalSong, 
+    song: ModalSong, 
     default: ModalUser
 };
 
-const DataTable = ({ columns, data, contextType }) => {
+const DataTable = ({ columns, data }) => {
+    const { contextType } = useContext(GlobalContext);    
     const ModalComponent = useMemo(() => {
         return modalMap[contextType] || modalMap.default;
     }, [contextType]);

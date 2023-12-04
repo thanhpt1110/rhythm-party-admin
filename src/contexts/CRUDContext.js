@@ -1,13 +1,12 @@
 // CRUDContext.js
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "./GlobalContext";
 
 const CRUDContext = (loadData, createData, updateData, deleteData, searchData, exportData) => {
-	const [contextType, setContextType] = useState([null])
     const [data, setData] = useState([]);
-	const [currentItem, setCurrentItem] = useState(null);
 	const [isDataChange, setDataChange] = useState(false);
-	const [modalMode, setModalMode] = useState("add");
-
+    const { modalMode } = useContext(GlobalContext);
+    
 	const handleLoadData = () => {
 		loadData();
 	};
@@ -34,14 +33,8 @@ const CRUDContext = (loadData, createData, updateData, deleteData, searchData, e
     }
 
 	return {
-        contextType, 
-        setContextType,
-		currentItem,
-		setCurrentItem,
 		isDataChange,
 		setDataChange,
-		modalMode,
-		setModalMode,
 		handleLoadData,
 		handleSearchData,
 		handleSaveData,

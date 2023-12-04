@@ -3,11 +3,12 @@ import DataTable from '../controls/DataTable';
 import SearchBox from 'components/controls/SearchBox';
 import ButtonAdd from 'components/controls/buttons/ButtonAdd';
 import ButtonExport from 'components/controls/buttons/ButtonExport';
-import ModalAddUser from 'components/controls/modals/ModalUser';
+import ModalUser from 'components/controls/modals/ModalUser';
 import { UserContext } from 'contexts/UserContext';
 import { GlobalContext } from 'contexts/GlobalContext';
 
 const User = () => {
+    const { setContextType } = useContext(GlobalContext);
     const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState('');
     const columns = ['Username', 'Password', 'Email', 'Gender', 'Status'];
@@ -23,7 +24,6 @@ const User = () => {
         { Username: 'thanhpt110', Password: 'abcxyz', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
     ];
 
-    const { setContextType } = useContext(GlobalContext);
     useEffect(() => {
         setContextType('user');
     }, []);
@@ -51,12 +51,12 @@ const User = () => {
             <div className='flex items-center justify-between py-5'>
                 <SearchBox onSearch={setSearchTerm} />
                 <div className='flex flex-row gap-5'>
-                    <ButtonAdd label={'user'} ModalComponent={ModalAddUser} />
+                    <ButtonAdd label={'user'} ModalComponent={ModalUser} />
                     <ButtonExport onClick={handleExportData}/>
                 </div>
             </div>
             {/* Chỗ này truyền data bằng userContext.data */}
-            <DataTable columns={columns} data={data} contextType={'user'}/>
+            <DataTable columns={columns} data={data} />
         </div>
     );
 };

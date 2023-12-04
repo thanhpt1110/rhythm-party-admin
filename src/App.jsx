@@ -15,6 +15,7 @@ import Setting from './components/contents/Setting';
 import Support from './components/contents/Support';
 import React from 'react';
 import { UserProvider } from 'contexts/UserContext';
+import { SongProvider } from 'contexts/SongContext';
 
 function App() {
     return (
@@ -28,7 +29,11 @@ function App() {
                         <User />
                     </UserProvider>
                 } />
-                <Route path='songs' element={<Song />} />
+                <Route path='songs' element={
+                    <SongProvider>
+                        <Song />
+                    </SongProvider>
+                } />
                 <Route path='playlist' element={<Playlist />} />
                 <Route path='artists' element={<Artist />} />
                 <Route path='rooms' element={<Room />} />
