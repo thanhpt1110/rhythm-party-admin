@@ -17,7 +17,7 @@ const DataTable = ({ columns, data }) => {
     const ModalComponent = useMemo(() => {
         return modalMap[contextType] || modalMap.default;
     }, [contextType]);
-
+    
     return (
         <table className='border border-gray-300'>
             <thead>
@@ -36,10 +36,10 @@ const DataTable = ({ columns, data }) => {
                             <td key={index}>{row[col]}</td>
                         ))}
                         <td className='text-right'>
-                            <ButtonUpdate ModalComponent={ModalComponent} />
+                            <ButtonUpdate ModalComponent={ModalComponent} item={row}/>
                         </td>
                         <td>
-                            <ButtonDelete ModalComponent={ModalDelete} />
+                            <ButtonDelete ModalComponent={ModalDelete} item={row}/>
                         </td>
                     </tr>
                 ))}

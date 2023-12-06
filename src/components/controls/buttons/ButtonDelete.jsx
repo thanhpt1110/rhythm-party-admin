@@ -1,9 +1,12 @@
-import React, { memo, useState } from 'react'
+import { GlobalContext } from 'contexts/GlobalContext';
+import React, { memo, useContext, useState } from 'react'
 
-const ButtonDelete = ({ ModalComponent }) => {
+const ButtonDelete = ({ ModalComponent, item }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { setCurrentItem } = useContext(GlobalContext);
 
     const handleOpenModal = () => {
+        setCurrentItem(item);
         setIsOpen(true);
     }
 

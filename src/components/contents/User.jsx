@@ -42,7 +42,7 @@ const User = () => {
                 handleSearchData(searchTerm);
             }
         }, 500); // Delay in milliseconds 
-
+        
         return () => clearTimeout(timeoutId);
     }, [searchTerm, handleSearchData]);
 

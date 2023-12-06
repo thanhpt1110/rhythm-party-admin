@@ -5,7 +5,7 @@ import { GlobalContext } from "./GlobalContext";
 const CRUDContext = (loadData, createData, updateData, deleteData, searchData, exportData) => {
     const [data, setData] = useState([]);
 	const [isDataChange, setDataChange] = useState(false);
-    const { modalMode } = useContext(GlobalContext);
+    const { modalMode, currentItem } = useContext(GlobalContext);
     
 	const handleLoadData = () => {
 		loadData();
@@ -15,13 +15,13 @@ const CRUDContext = (loadData, createData, updateData, deleteData, searchData, e
         if (modalMode === 'add') {
             createData();
         } else if (modalMode === 'update') {
-            updateData();
+            updateData(currentItem);
         }
 		setDataChange(true);
 	};
 
 	const handleDeleteData = () => {
-		deleteData();
+		deleteData(currentItem);
 	};
 
 	const handleSearchData = (searchTerm) => {

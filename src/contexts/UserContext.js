@@ -1,11 +1,13 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import CRUDContext from "./CRUDContext";
+import { GlobalContext } from "./GlobalContext";
 
 // @ts-ignore
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-	const handleLoadData = () => {
+
+    const handleLoadData = () => {
 		console.log("Load initial data");
 	};
 
@@ -13,12 +15,12 @@ export const UserProvider = ({ children }) => {
 		console.log("Save data from Add User");
 	};
 
-	const handleUpdateData = () => {
-		console.log("Save data from Edit User");
+	const handleUpdateData = (currentItem) => {
+        console.log("Save data from Edit User: ", currentItem);  
 	};
 
-	const handleDeleteData = () => {
-		console.log("Delete data from User");
+	const handleDeleteData = (currentItem) => {
+		console.log("Delete data from User: ", currentItem);
 	};
 
 	const handleSearchData = (searchTerm) => {

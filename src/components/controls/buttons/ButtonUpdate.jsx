@@ -1,11 +1,12 @@
 import { GlobalContext } from 'contexts/GlobalContext';
 import React, { memo, useContext, useState } from 'react'
 
-const ButtonUpdate = ({ ModalComponent }) => {
-    const { setModalMode } = useContext(GlobalContext);
+const ButtonUpdate = ({ ModalComponent, item }) => {
+    const { setModalMode, setCurrentItem } = useContext(GlobalContext);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenModal = () => {
+        setCurrentItem(item);
         setModalMode('update');
         setIsOpen(true);
     }
