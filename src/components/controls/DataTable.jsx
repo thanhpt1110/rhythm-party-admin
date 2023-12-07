@@ -5,10 +5,12 @@ import ModalUser from './modals/ModalUser'
 import ModalSong from './modals/ModalSong'
 import ModalDelete from './modals/ModalDelete'
 import { GlobalContext } from 'contexts/GlobalContext'
+import ModalArtist from './modals/ModalArtist'
 
 const modalMap = {
     user: ModalUser,
     song: ModalSong, 
+    artist: ModalArtist,
     default: ModalUser
 };
 

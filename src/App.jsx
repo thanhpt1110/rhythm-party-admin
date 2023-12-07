@@ -16,6 +16,7 @@ import Support from './components/contents/Support';
 import React from 'react';
 import { UserProvider } from 'contexts/UserContext';
 import { SongProvider } from 'contexts/SongContext';
+import { ArtistProvider } from 'contexts/ArtistContext';
 
 function App() {
     return (
@@ -35,7 +36,11 @@ function App() {
                     </SongProvider>
                 } />
                 <Route path='playlist' element={<Playlist />} />
-                <Route path='artists' element={<Artist />} />
+                <Route path='artists' element={
+                    <ArtistProvider>
+                        <Artist />
+                    </ArtistProvider>
+                } />
                 <Route path='rooms' element={<Room />} />
                 <Route path='settings' element={<Setting />} />
                 <Route path='support' element={<Support />} />

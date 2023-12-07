@@ -13,12 +13,12 @@ export const SongProvider = ({ children }) => {
 		console.log("Save data from Add Song");
 	};
 
-	const handleUpdateData = () => {
-		console.log("Save data from Edit Song");
+	const handleUpdateData = (currentItem) => {
+		console.log("Save data from Edit Song: ", currentItem);
 	};
 
-	const handleDeleteData = () => {
-		console.log("Delete data from Song");
+	const handleDeleteData = (currentItem) => {
+		console.log("Delete data from Song: ", currentItem);
 	};  
 
 	const handleSearchData = (searchTerm) => {

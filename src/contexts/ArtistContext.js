@@ -2,25 +2,24 @@ import { createContext } from "react";
 import CRUDContext from "./CRUDContext";
 
 // @ts-ignore
-export const UserContext = createContext();
+export const ArtistContext = createContext();
 
-export const UserProvider = ({ children }) => {
-
-    const handleLoadData = () => {
+export const ArtistProvider = ({ children }) => {
+	const handleLoadData = () => {
 		console.log("Load initial data");
 	};
 
 	const handleCreateData = () => {
-		console.log("Save data from Add User");
+		console.log("Save data from Add Artist");
 	};
 
 	const handleUpdateData = (currentItem) => {
-        console.log("Save data from Edit User: ", currentItem);  
+		console.log("Save data from Edit Artist: ", currentItem);
 	};
 
 	const handleDeleteData = (currentItem) => {
-		console.log("Delete data from User: ", currentItem);
-	};
+		console.log("Delete data from Artist: ", currentItem);
+	};  
 
 	const handleSearchData = (searchTerm) => {
 		console.log(`Fetch data base on ${searchTerm}`);
@@ -40,8 +39,8 @@ export const UserProvider = ({ children }) => {
 	);
 
 	return (
-		<UserContext.Provider value={contextValue}>
+		<ArtistContext.Provider value={contextValue}>
 			{children}
-		</UserContext.Provider>
+		</ArtistContext.Provider>
 	);
 };
