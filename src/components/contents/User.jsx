@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import DataTable from '../controls/DataTable';
-import SearchBox from 'components/controls/SearchBox';
+import DataTable from '../controls/tables/DataTable';
+import SearchBox from 'components/controls/inputs/SearchBox';
 import ButtonAdd from 'components/controls/buttons/ButtonAdd';
 import ButtonExport from 'components/controls/buttons/ButtonExport';
 import ModalUser from 'components/controls/modals/ModalUser';

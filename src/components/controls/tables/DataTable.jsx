@@ -1,16 +1,18 @@
 import React, { memo, useContext, useMemo } from 'react'
-import ButtonUpdate from './buttons/ButtonUpdate'
-import ButtonDelete from './buttons/ButtonDelete'
-import ModalUser from './modals/ModalUser'
-import ModalSong from './modals/ModalSong'
-import ModalDelete from './modals/ModalDelete'
+import ButtonUpdate from '../buttons/ButtonUpdate'
+import ButtonDelete from '../buttons/ButtonDelete'
+import ModalUser from '../modals/ModalUser'
+import ModalSong from '../modals/ModalSong'
+import ModalDelete from '../modals/ModalDelete'
 import { GlobalContext } from 'contexts/GlobalContext'
-import ModalArtist from './modals/ModalArtist'
+import ModalArtist from '../modals/ModalArtist'
+import ModalRoom from '../modals/ModalRoom'
 
 const modalMap = {
     user: ModalUser,
     song: ModalSong, 
     artist: ModalArtist,
+    room: ModalRoom,
     default: ModalUser
 };
 

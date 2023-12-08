@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
-import ComboBox from '../ComboBox';
+import ComboBox from '../inputs/ComboBox';
 
 const BarChart = ({ data, labels }) => {
     const chartRef = useRef(null);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import DataTable from '../controls/DataTable';
-import SearchBox from 'components/controls/SearchBox';
+import DataTable from '../controls/tables/DataTable';
+import SearchBox from 'components/controls/inputs/SearchBox';
 import ButtonAdd from 'components/controls/buttons/ButtonAdd';
 import ButtonExport from 'components/controls/buttons/ButtonExport';
 import { GlobalContext } from 'contexts/GlobalContext';
@@ -49,7 +49,7 @@ const Artist = () => {
             <div className='flex items-center justify-between py-5'>          
                 <SearchBox onSearch={setSearchTerm} /> 
                 <div className='flex flex-row gap-5'>
-                    <ButtonAdd label={'song'} ModalComponent={ModalArtist} />
+                    <ButtonAdd label={'artist'} ModalComponent={ModalArtist} />
                     <ButtonExport onClick={handleExportData}/>
                 </div>
             </div>

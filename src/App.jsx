@@ -17,6 +17,7 @@ import React from 'react';
 import { UserProvider } from 'contexts/UserContext';
 import { SongProvider } from 'contexts/SongContext';
 import { ArtistProvider } from 'contexts/ArtistContext';
+import { RoomProvider } from 'contexts/RoomContext';
 
 function App() {
     return (
@@ -41,7 +42,11 @@ function App() {
                         <Artist />
                     </ArtistProvider>
                 } />
-                <Route path='rooms' element={<Room />} />
+                <Route path='rooms' element={
+                    <RoomProvider>
+                        <Room />
+                    </RoomProvider>
+                } />
                 <Route path='settings' element={<Setting />} />
                 <Route path='support' element={<Support />} />
             </Route>
