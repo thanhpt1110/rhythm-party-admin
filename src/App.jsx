@@ -18,6 +18,7 @@ import { UserProvider } from 'contexts/UserContext';
 import { SongProvider } from 'contexts/SongContext';
 import { ArtistProvider } from 'contexts/ArtistContext';
 import { RoomProvider } from 'contexts/RoomContext';
+import { PlaylistProvider } from 'contexts/PlaylistContext';
 
 function App() {
     return (
@@ -36,7 +37,11 @@ function App() {
                         <Song />
                     </SongProvider>
                 } />
-                <Route path='playlist' element={<Playlist />} />
+                <Route path='playlist' element={
+                    <PlaylistProvider>
+                        <Playlist />
+                    </PlaylistProvider>
+                } />
                 <Route path='artists' element={
                     <ArtistProvider>
                         <Artist />

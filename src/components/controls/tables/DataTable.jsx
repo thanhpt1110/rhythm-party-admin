@@ -7,12 +7,14 @@ import ModalDelete from '../modals/ModalDelete'
 import { GlobalContext } from 'contexts/GlobalContext'
 import ModalArtist from '../modals/ModalArtist'
 import ModalRoom from '../modals/ModalRoom'
+import ModalPlaylist from '../modals/ModalPlaylist'
 
 const modalMap = {
     user: ModalUser,
     song: ModalSong, 
     artist: ModalArtist,
     room: ModalRoom,
+    playlist: ModalPlaylist,
     default: ModalUser
 };
 
