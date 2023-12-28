@@ -19,6 +19,7 @@ import { SongProvider } from 'contexts/SongContext';
 import { ArtistProvider } from 'contexts/ArtistContext';
 import { RoomProvider } from 'contexts/RoomContext';
 import { PlaylistProvider } from 'contexts/PlaylistContext';
+import { PendingApprovalProvider } from 'contexts/PendingApprovalContext';
 
 function App() {
     return (
@@ -26,7 +27,11 @@ function App() {
             <Route path='/' element={<Layout />}>
                 <Route index element={<Dashboard />} />
                 <Route path='inboxes' element={<Inbox />} />
-                <Route path='pending-approval' element={<PendingApproval />} />
+                <Route path='pending-approval' element={
+                    <PendingApprovalProvider>
+                        <PendingApproval />
+                    </PendingApprovalProvider>
+                } />
                 <Route path='users' element={
                     <UserProvider>
                         <User />

@@ -6,7 +6,9 @@ const Support = () => {
 
     const handleSubmit = () => {
         // Xử lý dữ liệu title và content ở đây
-        console.log(title, content);
+        setTitle('');
+        setContent('');
+        alert('Submit support successful');
     }
 
     return (

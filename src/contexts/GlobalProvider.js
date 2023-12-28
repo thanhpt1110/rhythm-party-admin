@@ -5,6 +5,7 @@ export const GlobalProvider = ({ children }) => {
 	const [contextType, setContextType] = useState("user");
 	const [modalMode, setModalMode] = useState("add");
 	const [currentItem, setCurrentItem] = useState(null);
+    const [selectedItems, setSelectedItems] = useState([]);
 
 	const contextValue = {
 		contextType,
@@ -13,6 +14,8 @@ export const GlobalProvider = ({ children }) => {
 		setModalMode,
 		currentItem,
 		setCurrentItem,
+        selectedItems,
+        setSelectedItems,
 	};
 
 	return (

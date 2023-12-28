@@ -27,7 +27,7 @@ const Sidebar = () => {
                 ))}
                 <div className={buttonLogoutClass}>
                     <span className='mr-2 text-2xl'>
-                        <i class="ri-logout-box-r-line" />
+                        <i className="ri-logout-box-r-line" />
                     </span> 
                     <span className='text-lg'>
                         Sign Out
