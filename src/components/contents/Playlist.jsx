@@ -12,13 +12,13 @@ const Playlist = () => {
     const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
     const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(PlaylistContext);
     const [searchTerm, setSearchTerm] = useState('');
-    const columns = ['Image', 'User', 'Songs', 'Listen', 'MostReplay'];
+    const columns = ['User', 'Songs', 'Listen', 'MostReplay'];
     const data = [
-        { Image: '', User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
-        { Image: '', User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
-        { Image: '', User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
-        { Image: '', User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
-        { Image: '', User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
+        { User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
+        { User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
+        { User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
+        { User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
+        { User: 'Tuấn Thành', Songs: '13', Listen: '512', MostReplay: 'Hit maker'},
         // Thêm các đối tượng khác vào đây
     ];
 

@@ -30,13 +30,18 @@ export const UserProvider = ({ children }) => {
 		console.log("Export data successfully");
 	};
 
+    const handleDeleteList = (selectedItems) => {
+        console.log(selectedItems);
+    }
+
 	const contextValue = CRUDContext(
 		handleLoadData,
-		handleCreateData,
+        handleCreateData,
 		handleUpdateData,
 		handleDeleteData,
 		handleSearchData, 
         handleExportData, 
+        handleDeleteList, 
 	);
 
 	return (

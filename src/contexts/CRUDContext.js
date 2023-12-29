@@ -2,11 +2,11 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 
-const CRUDContext = (loadData, createData, updateData, deleteData, searchData, exportData) => {
+const CRUDContext = (loadData, createData, updateData, deleteData, searchData, exportData, deleteList) => {
     const [data, setData] = useState([]);
 	const [isDataChange, setDataChange] = useState(false);
-    const { modalMode, currentItem } = useContext(GlobalContext);
-    
+    const { modalMode, currentItem, selectedItems } = useContext(GlobalContext);
+
 	const handleLoadData = () => {
 		loadData();
 	};
@@ -32,6 +32,10 @@ const CRUDContext = (loadData, createData, updateData, deleteData, searchData, e
         exportData();
     }
 
+    const handleDeleteList = () => { 
+        deleteList(selectedItems);
+    }
+
 	return {
 		isDataChange,
 		setDataChange,
@@ -40,6 +44,7 @@ const CRUDContext = (loadData, createData, updateData, deleteData, searchData, e
 		handleSaveData,
 		handleDeleteData,
         handleExportData,
+        handleDeleteList,
 	};
 };
 

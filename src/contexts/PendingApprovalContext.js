@@ -1,5 +1,6 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import CRUDContext from "./CRUDContext";
+import { GlobalContext } from "./GlobalContext";
 
 // @ts-ignore
 export const PendingApprovalContext = createContext();
@@ -29,15 +30,28 @@ export const PendingApprovalProvider = ({ children }) => {
 		console.log("Export data successfully");
 	};
 
-	const contextValue = CRUDContext(
-		handleLoadData,
-        handleCreateData,
-		handleUpdateData,
-		handleDeleteData,
-		handleSearchData, 
-        handleExportData, 
-	);
+    const handleDeleteList = (selectedItems) => {
+        console.log(selectedItems);
+    }
 
+    const {selectedItems} = useContext(GlobalContext)
+    const handleApproveList = () => {
+        console.log(selectedItems)
+    }
+
+    const contextValue = {
+        ...CRUDContext(
+            handleLoadData,
+            handleCreateData,
+            handleUpdateData,
+            handleDeleteData,
+            handleSearchData, 
+            handleExportData, 
+            handleDeleteList, 
+        ),
+        handleApproveList,
+    };
+    
 	return (
 		<PendingApprovalContext.Provider value={contextValue}>
 			{children}

@@ -1,25 +1,15 @@
 import { GlobalContext } from 'contexts/GlobalContext';
-import React, { useContext } from 'react'
-import Swal from 'sweetalert2'
+import React, { memo, useContext, useState } from 'react'
+import Swal from 'sweetalert2';
+import ModalDeleteList from '../modals/ModalDeleteList';
 
 const ButtonDeleteList = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const { selectedItems } = useContext(GlobalContext);
-    const handleOnClick = () => {
+
+    const handleOpenModal = () => {
         if (selectedItems.length !== 0) {
-            Swal.fire({
-                title: "Deletion warning",
-                text: "You are about to delete these items. Are you sure?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes",
-                cancelButtonText: "No",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    console.log(selectedItems);
-                }
-            });
+            setIsOpen(true);
         } else {
             Swal.fire({
                 title: "",
@@ -29,11 +19,18 @@ const ButtonDeleteList = () => {
         }
     }
 
+    const handleCloseModal = () => {
+        setIsOpen(false);
+    }
+
     return (
-        <div>
-            <i onClick={handleOnClick} className="ri-delete-bin-6-line text-2xl text-red-600 cursor-pointer" />
-        </div>
+        <>
+            <div>
+                <i onClick={handleOpenModal} className="ri-delete-bin-6-line text-2xl text-red-600 cursor-pointer" />
+            </div>
+            {isOpen && <ModalDeleteList onClose={handleCloseModal} />}
+        </>
     )
 }
 
-export default ButtonDeleteList
+export default memo(ButtonDeleteList)

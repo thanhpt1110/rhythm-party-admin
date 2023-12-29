@@ -1,9 +1,12 @@
 import { GlobalContext } from 'contexts/GlobalContext';
+import { PendingApprovalContext } from 'contexts/PendingApprovalContext';
 import React, { useContext } from 'react'
 import Swal from 'sweetalert2'
 
 const ButtonApproveList = () => {
     const { selectedItems } = useContext(GlobalContext);
+    const { handleApproveList } = useContext(PendingApprovalContext);
+
     const handleOnClick = () => {
         if (selectedItems.length !== 0) {
             Swal.fire({
@@ -17,7 +20,7 @@ const ButtonApproveList = () => {
                 cancelButtonText: "Cancel",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log(selectedItems);
+                    handleApproveList();
                 }
             });
         } else {

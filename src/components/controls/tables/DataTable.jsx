@@ -10,6 +10,8 @@ import ModalArtist from '../modals/ModalArtist'
 import ModalRoom from '../modals/ModalRoom'
 import ModalPlaylist from '../modals/ModalPlaylist'
 import ButtonApprove from '../buttons/ButtonApprove'
+import ButtonInfo from '../buttons/ButtonInfo'
+import ModalApproval from '../modals/ModalApproval'
 
 const modalMap = {
     user: ModalUser,
@@ -17,6 +19,7 @@ const modalMap = {
     artist: ModalArtist,
     room: ModalRoom,
     playlist: ModalPlaylist,
+    pendingApproval: ModalApproval,
     default: ModalUser
 };
 
@@ -70,7 +73,8 @@ const DataTable = ({ columns, data }) => {
                     {columns.map((col, index) => (
                         <th key={index}>{col}</th>
                     ))}
-                    <th className='w-36' />
+                    <th className='w-8' />
+                    <th className='w-32' />
                     <th className='w-40' />
                 </tr>
             </thead>
@@ -83,6 +87,9 @@ const DataTable = ({ columns, data }) => {
                         {columns.map((col, index) => (
                             <td key={index}>{row[col]}</td>
                         ))}
+                        <td className='text-right'>
+                            <ButtonInfo ModalComponent={ModalComponent} item={row} />
+                        </td>
                         <td className='text-right'>
                             {contextType === 'pendingApproval' ? <ButtonApprove item={row} /> : <ButtonUpdate ModalComponent={ModalComponent} item={row} />}
                         </td>

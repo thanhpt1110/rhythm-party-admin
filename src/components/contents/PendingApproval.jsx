@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useLayoutEffect } from 'react';
 import DataTable from '../controls/tables/DataTable';
 import SearchBox from 'components/controls/inputs/SearchBox';
 import ButtonExport from 'components/controls/buttons/ButtonExport';
 import { PendingApprovalContext } from 'contexts/PendingApprovalContext';
 import { GlobalContext } from 'contexts/GlobalContext';
-import Swal from 'sweetalert2';
 import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 import ButtonApproveList from 'components/controls/buttons/ButtonApproveList';
 
@@ -22,6 +21,7 @@ const PendingApproval = () => {
         // Thêm các đối tượng khác vào đây
     ];
 
+    // setContextType('pendingApproval');
     useEffect(() => {
         setContextType('pendingApproval');
         setSelectedItems([]);
