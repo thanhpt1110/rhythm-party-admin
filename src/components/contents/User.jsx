@@ -6,9 +6,10 @@ import ButtonExport from 'components/controls/buttons/ButtonExport';
 import ModalUser from 'components/controls/modals/ModalUser';
 import { UserContext } from 'contexts/UserContext';
 import { GlobalContext } from 'contexts/GlobalContext';
+import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 
 const User = () => {
-    const { setContextType } = useContext(GlobalContext);
+    const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
     const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState('');
     const columns = ['Username', 'Password', 'Email', 'Gender', 'Status'];
@@ -26,6 +27,7 @@ const User = () => {
 
     useEffect(() => {
         setContextType('user');
+        setSelectedItems([]);
     }, []);
 
     useEffect(() => {
@@ -49,13 +51,16 @@ const User = () => {
     return (
         <div className='flex flex-col'>
             <div className='flex items-center justify-between py-5'>
-                <SearchBox onSearch={setSearchTerm} />
+                <div className='flex items-center gap-3'>
+                    <SearchBox onSearch={setSearchTerm} />
+                    <span className='text-3xl font-extra-light text-gray-400'>|</span>
+                    <ButtonDeleteList />
+                </div>
                 <div className='flex flex-row gap-5'>
                     <ButtonAdd label={'user'} ModalComponent={ModalUser} />
-                    <ButtonExport onClick={handleExportData}/>
+                    <ButtonExport onClick={handleExportData} />
                 </div>
             </div>
-            {/* Chỗ này truyền data bằng userContext.data */}
             <DataTable columns={columns} data={data} />
         </div>
     );

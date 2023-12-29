@@ -6,9 +6,11 @@ import ButtonExport from 'components/controls/buttons/ButtonExport';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ModalRoom from 'components/controls/modals/ModalRoom';
 import { RoomContext } from 'contexts/RoomContext';
+import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
+import ModalSong from 'components/controls/modals/ModalSong';
 
 const Room = () => {
-    const { setContextType } = useContext(GlobalContext);
+    const { setContextType, selectedItems } = useContext(GlobalContext);
     const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(RoomContext);
     const [searchTerm, setSearchTerm] = useState('');
     const columns = ['Room', 'People', 'Chats', 'CreateDate'];
@@ -39,16 +41,24 @@ const Room = () => {
         return () => clearTimeout(timeoutId);
     }, [searchTerm, handleSearchData]);
 
+    const handleDeleteList = () => {
+        console.log(selectedItems);
+    }
+
     return (
         <div className='flex flex-col'>
-            <div className='flex items-center justify-between py-5'>          
-                <SearchBox onSearch={setSearchTerm} /> 
+            <div className='flex items-center justify-between py-5'>
+                <div className='flex items-center gap-3'>
+                    <SearchBox onSearch={setSearchTerm} />
+                    <span className='text-3xl font-extra-light text-gray-400'>|</span>
+                    <ButtonDeleteList onClick={handleDeleteList}/>
+                </div>
                 <div className='flex flex-row gap-5'>
                     <ButtonAdd label={'room'} ModalComponent={ModalRoom} />
-                    <ButtonExport onClick={handleExportData}/>
+                    <ButtonExport onClick={handleExportData} />
                 </div>
             </div>
-            <DataTable columns={columns} data={data}/>
+            <DataTable columns={columns} data={data} />
         </div>
     );
 };

@@ -4,9 +4,12 @@ import SearchBox from 'components/controls/inputs/SearchBox';
 import ButtonExport from 'components/controls/buttons/ButtonExport';
 import { PendingApprovalContext } from 'contexts/PendingApprovalContext';
 import { GlobalContext } from 'contexts/GlobalContext';
+import Swal from 'sweetalert2';
+import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
+import ButtonApproveList from 'components/controls/buttons/ButtonApproveList';
 
 const PendingApproval = () => {
-    const { setContextType, selectedItems } = useContext(GlobalContext);
+    const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
     const { isDataChange, setDataChange, handleSearchData, handleExportData } = useContext(PendingApprovalContext);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -14,13 +17,14 @@ const PendingApproval = () => {
     const data = [
         { PendingApproval: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
         { PendingApproval: 'Thích Em Hơi Nhiều', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
-        { PendingApproval: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
-        { PendingApproval: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' }
+        { PendingApproval: 'Nàng Thơ', Artist: 'Hoàng Dũng', Genre: 'Pop', Likes: '125', Comments: '12' },
+        { PendingApproval: 'My Heart Will Go On', Artist: 'Celine Dion', Genre: 'Pop', Likes: '125', Comments: '12' }
         // Thêm các đối tượng khác vào đây
     ];
 
     useEffect(() => {
-        setContextType('PendingApproval');
+        setContextType('pendingApproval');
+        setSelectedItems([]);
     }, []);
 
     useEffect(() => {
@@ -41,28 +45,14 @@ const PendingApproval = () => {
         return () => clearTimeout(timeoutId);
     }, [searchTerm, handleSearchData]);
 
-    const handleDelete = () => {
-        if (selectedItems.length !== 0)
-            console.log(selectedItems);
-        else 
-            alert("Please choose at least one item");
-    }
-
-    const handleApprove = () => {
-        if (selectedItems.length !== 0)
-            console.log(selectedItems);
-        else 
-            alert("Please choose at least one item");
-    }
-
     return (
         <div className='flex flex-col'>
             <div className='flex items-center justify-between py-5'>
                 <div className='flex items-center gap-3'>
                     <SearchBox onSearch={setSearchTerm} />
                     <span className='text-3xl font-extra-light text-gray-400'>|</span>
-                    <i onClick={handleDelete} className="ri-delete-bin-6-line text-2xl text-red-600 cursor-pointer" />
-                    <i onClick={handleApprove} className="ri-checkbox-circle-fill text-2xl text-green-600 cursor-pointer" />
+                    <ButtonDeleteList/>
+                    <ButtonApproveList/>
                 </div>
                 <div className='flex flex-row gap-5'>
                     <ButtonExport onClick={handleExportData} />

@@ -14,7 +14,7 @@ const Support = () => {
     return (
         <div className='flex flex-col py-4 h-full'>
             <div className='mb-4 w-full'>
-                <div className='text-xl font-bold mb-2'>
+                <div className='text-xl font-semibold mb-2'>
                     Title
                 </div>
                 <div>
@@ -28,9 +28,9 @@ const Support = () => {
                     />
                 </div>
             </div>
-            <div className='flex flex-col mb-4 w-full h-full'>
-                <div className='text-xl font-bold mb-2'>
-                    Content
+            <div className='flex flex-col mb-4 mt-6 w-full h-full'>
+                <div className='text-xl font-semibold mb-2'>
+                    Description
                 </div>
                 <div className='h-full '>
                     <textarea
@@ -45,7 +45,7 @@ const Support = () => {
                     onClick={handleSubmit}
                     type="submit"
                     value="Submit"
-                    className='px-7 py-3 bg-violet-800 hover:cursor-pointer hover:bg-violet-700 text-white font-bold rounded-lg transition duration-300 ease-in-out'
+                    className=' mt-6 px-7 py-3 bg-violet-800 hover:cursor-pointer hover:bg-violet-700 text-white font-bold rounded-lg transition duration-300 ease-in-out'
                 />
             </div>
         </div>

@@ -84,7 +84,7 @@ const DataTable = ({ columns, data }) => {
                             <td key={index}>{row[col]}</td>
                         ))}
                         <td className='text-right'>
-                            {contextType === 'PendingApproval' ? <ButtonApprove item={row} /> : <ButtonUpdate ModalComponent={ModalComponent} item={row} />}
+                            {contextType === 'pendingApproval' ? <ButtonApprove item={row} /> : <ButtonUpdate ModalComponent={ModalComponent} item={row} />}
                         </td>
                         <td>
                             <ButtonDelete ModalComponent={ModalDelete} item={row} />

@@ -6,9 +6,10 @@ import ButtonExport from 'components/controls/buttons/ButtonExport';
 import { SongContext } from 'contexts/SongContext';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ModalSong from 'components/controls/modals/ModalSong';
+import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 
 const Song = () => {
-    const { setContextType, selectedItems } = useContext(GlobalContext);
+    const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
     const { isDataChange, setDataChange, handleSearchData, handleExportData } = useContext(SongContext);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -16,13 +17,14 @@ const Song = () => {
     const data = [
         { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
         { Song: 'Thích Em Hơi Nhiều', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
-        { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
+        { Song: 'Yên', Artist: 'Hoàng Dũng', Genre: 'Pop', Likes: '125', Comments: '12' },
         { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' }
         // Thêm các đối tượng khác vào đây
     ];
 
     useEffect(() => {
         setContextType('song');
+        setSelectedItems([]);
     }, []);
 
     useEffect(() => {
@@ -43,17 +45,13 @@ const Song = () => {
         return () => clearTimeout(timeoutId);
     }, [searchTerm, handleSearchData]);
 
-    const handleDelete = () => {
-        console.log(selectedItems);
-    }
-
     return (
         <div className='flex flex-col'>
             <div className='flex items-center justify-between py-5'>
                 <div className='flex items-center gap-3'>
                     <SearchBox onSearch={setSearchTerm} />
-                    <span className='text-3xl font-extralight text-gray-400'>|</span>
-                    <i onClick={handleDelete} className="ri-delete-bin-6-line text-2xl text-gray-600 cursor-pointer" />
+                    <span className='text-3xl font-extra-light text-gray-400'>|</span>
+                    <ButtonDeleteList/>
                 </div>
                 <div className='flex flex-row gap-5'>
                     <ButtonAdd label={'song'} ModalComponent={ModalSong} />

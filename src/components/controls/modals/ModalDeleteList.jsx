@@ -15,10 +15,10 @@ const contextMap = {
     artist: ArtistContext,
     room: RoomContext, 
     playlist: PlaylistContext,
-    pendingApproval: PendingApprovalContext,
+    pendingApproval: PendingApprovalContext
 };
 
-const ModalDelete = ({ onClose }) => {
+const ModalDeleteList = ({ onClose }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -58,4 +58,4 @@ const ModalDelete = ({ onClose }) => {
     );
 };
 
-export default ModalDelete;
+export default ModalDeleteList;

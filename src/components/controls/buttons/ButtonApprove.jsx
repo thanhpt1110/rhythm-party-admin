@@ -1,18 +1,29 @@
 import { GlobalContext } from 'contexts/GlobalContext';
-import React, { memo, useContext } from 'react'
+import React, { memo, useContext, useState } from 'react'
+import ModalApproval from '../modals/ModalApproval';
 
 const ButtonApprove = ({ item }) => {
-    const { setCurrentItem } = useContext(GlobalContext);
+    const { setModalMode, setCurrentItem } = useContext(GlobalContext);
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleApproveSong = () => {
+    const handleOpenModal = () => {
         setCurrentItem(item);
+        setModalMode('update');
+        setIsOpen(true);
+    }
+
+    const handleCloseModal = () => {
+        setIsOpen(false);
     }
 
     return (
-        <button onClick={handleApproveSong} className=' bg-green-600 text-white rounded-lg border border-zinc-100 px-4 py-2 hover:bg-green-700'>
-            <i className="ri-checkbox-circle-fill xl:mr-2" />
-            <span className='hidden xl:inline'>Approve</span>
-        </button>
+        <>
+            <button onClick={handleOpenModal} className=' bg-green-600 text-white rounded-lg border border-zinc-100 px-4 py-2 hover:bg-green-700'>
+                <i className="ri-checkbox-circle-fill xl:mr-2" />
+                <span className='hidden xl:inline'>Approve</span>
+            </button>
+            {isOpen && <ModalApproval onClose={handleCloseModal} />}
+        </>
     )
 }
 

@@ -9,16 +9,16 @@ export const PendingApprovalProvider = ({ children }) => {
 		console.log("Load initial data");
 	};
 
-	const handleCreateData = () => {
-		console.log("Save data from Add Playlist");
+    const handleCreateData = () => {
+		console.log("Save data from Add Artist");
 	};
 
 	const handleUpdateData = (currentItem) => {
-		console.log("Save data from Edit Playlist: ", currentItem);
+		console.log("Approve current item: ", currentItem);
 	};
 
 	const handleDeleteData = (currentItem) => {
-		console.log("Delete data from Playlist: ", currentItem);
+		console.log("Delete data from Pending Approval: ", currentItem);
 	};  
 
 	const handleSearchData = (searchTerm) => {
@@ -31,7 +31,7 @@ export const PendingApprovalProvider = ({ children }) => {
 
 	const contextValue = CRUDContext(
 		handleLoadData,
-		handleCreateData,
+        handleCreateData,
 		handleUpdateData,
 		handleDeleteData,
 		handleSearchData, 

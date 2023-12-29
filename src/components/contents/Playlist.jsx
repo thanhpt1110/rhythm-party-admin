@@ -6,9 +6,10 @@ import ButtonExport from 'components/controls/buttons/ButtonExport';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ModalPlaylist from 'components/controls/modals/ModalPlaylist';
 import { PlaylistContext } from 'contexts/PlaylistContext';
+import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 
 const Playlist = () => {
-    const { setContextType } = useContext(GlobalContext);
+    const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
     const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(PlaylistContext);
     const [searchTerm, setSearchTerm] = useState('');
     const columns = ['Image', 'User', 'Songs', 'Listen', 'MostReplay'];
@@ -23,6 +24,7 @@ const Playlist = () => {
 
     useEffect(() => {
         setContextType('playlist');
+        setSelectedItems([]);
     }, []);
 
     useEffect(() => {
@@ -45,14 +47,18 @@ const Playlist = () => {
 
     return (
         <div className='flex flex-col'>
-            <div className='flex items-center justify-between py-5'>          
-                <SearchBox onSearch={setSearchTerm} /> 
+            <div className='flex items-center justify-between py-5'>
+                <div className='flex items-center gap-3'>
+                    <SearchBox onSearch={setSearchTerm} />
+                    <span className='text-3xl font-extra-light text-gray-400'>|</span>
+                    <ButtonDeleteList/>
+                </div>
                 <div className='flex flex-row gap-5'>
                     <ButtonAdd label={'playlist'} ModalComponent={ModalPlaylist} />
-                    <ButtonExport onClick={handleExportData}/>
+                    <ButtonExport onClick={handleExportData} />
                 </div>
             </div>
-            <DataTable columns={columns} data={data}/>
+            <DataTable columns={columns} data={data} />
         </div>
     );
 };

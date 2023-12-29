@@ -18,6 +18,7 @@
     "remixicon": "^3.5.0",
     "remixicon-react": "^1.0.0",
     "source-map-loader": "^4.0.1",
+    "sweetalert2": "^11.10.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

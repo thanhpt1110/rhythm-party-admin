@@ -6,9 +6,10 @@ import ButtonExport from 'components/controls/buttons/ButtonExport';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ModalArtist from 'components/controls/modals/ModalArtist';
 import { ArtistContext } from 'contexts/ArtistContext';
+import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 
 const Artist = () => {
-    const { setContextType } = useContext(GlobalContext);
+    const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
     const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(ArtistContext);
     const [searchTerm, setSearchTerm] = useState('');
     const columns = ['Image', 'Artist', 'Songs', 'Rating', 'MostReplay'];
@@ -24,6 +25,7 @@ const Artist = () => {
 
     useEffect(() => {
         setContextType('artist');
+        setSelectedItems([]);
     }, []);
 
     useEffect(() => {
@@ -46,14 +48,18 @@ const Artist = () => {
 
     return (
         <div className='flex flex-col'>
-            <div className='flex items-center justify-between py-5'>          
-                <SearchBox onSearch={setSearchTerm} /> 
+            <div className='flex items-center justify-between py-5'>
+                <div className='flex items-center gap-3'>
+                    <SearchBox onSearch={setSearchTerm} />
+                    <span className='text-3xl font-extra-light text-gray-400'>|</span>
+                    <ButtonDeleteList/>
+                </div>
                 <div className='flex flex-row gap-5'>
                     <ButtonAdd label={'artist'} ModalComponent={ModalArtist} />
-                    <ButtonExport onClick={handleExportData}/>
+                    <ButtonExport onClick={handleExportData} />
                 </div>
             </div>
-            <DataTable columns={columns} data={data}/>
+            <DataTable columns={columns} data={data} />
         </div>
     );
 };
