@@ -12,17 +12,16 @@ const User = () => {
     const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
     const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState('');
-    const columns = ['Username', 'Password', 'Email', 'Gender', 'Status'];
+    const columns = ['Username', 'Email', 'Gender', 'Status'];
     const data = [
-        { Username: 'asghunter', Password: '123456', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Password: 'abcxyz', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'asghunter', Password: '123456', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Password: 'abcxyz', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'asghunter', Password: '123456', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Password: 'abcxyz', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'asghunter', Password: '123456', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Password: 'abcxyz', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'thanhpt110', Password: 'abcxyz', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
+        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
+        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
+        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
+        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
     ];
 
     useEffect(() => {
