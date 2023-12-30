@@ -13,15 +13,38 @@ import Artist from './components/contents/Artist';
 import Room from './components/contents/Room';
 import Setting from './components/contents/Setting';
 import Support from './components/contents/Support';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { UserProvider } from 'contexts/UserContext';
 import { SongProvider } from 'contexts/SongContext';
 import { ArtistProvider } from 'contexts/ArtistContext';
 import { RoomProvider } from 'contexts/RoomContext';
 import { PlaylistProvider } from 'contexts/PlaylistContext';
 import { PendingApprovalProvider } from 'contexts/PendingApprovalContext';
-
+import { loginCheckLogin } from 'api/AuthApi';
 function App() {
+    useEffect(()=>{
+        const checkLogin = async() =>{
+            try{
+                const respone = await loginCheckLogin();
+                console.log(respone);
+                if(respone.status===200)
+                {
+                    console.log("Success");
+                }
+                else if(respone.status === 401)
+                {
+                    console.log("Un authorized")
+                }
+                else
+                    console.log("error")
+            }
+            catch(e)
+            {
+                console.log(e)
+            }
+        }
+        checkLogin();
+    })
     return (
         <Routes>
             <Route path='/' element={<Layout />}>
