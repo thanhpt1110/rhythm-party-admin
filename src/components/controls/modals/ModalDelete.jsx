@@ -23,6 +23,7 @@ const ModalDelete = ({ onClose }) => {
 
     const handleSave = () => {
         handleDeleteData();
+        onClose();
     };  
 
     return (
