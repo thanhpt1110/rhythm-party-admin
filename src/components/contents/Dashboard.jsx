@@ -2,6 +2,7 @@ import React from 'react'
 import ButtonDashboard from '../controls/buttons/ButtonDashboard'
 import BarChart from '../controls/charts/BarChart'
 import PieChart from '../controls/charts/PieChart'
+import { DASHBOARD_BUTTON_LINKS } from 'components/consts/DashboardButton'
 
 const Dashboard = () => {
     const classTitle = 'text-xl font-bold ml-1 py-5'
@@ -10,13 +11,12 @@ const Dashboard = () => {
 
     const labelPieChart = ['Male', 'Female', 'Others'];
     const dataPieChart = [57, 29, 17];
-    const buttons = [1, 2, 3, 4];
 
     return (
         <div className='flex-shrink max-w-full w-full '>
             <div className={classTitle}>Statistic</div>
             <div className='flex items-center justify-between gap-10'>
-                {buttons.map((_, index) => <ButtonDashboard key={index} />)}
+                {DASHBOARD_BUTTON_LINKS.map((link, index) => <ButtonDashboard key={index} link={link}/>)}
             </div>
             <div className={`${classTitle} pt-0`}>Charts</div>
             <div className='2xl:flex 2xl:flex-row 2xl:items-center 2xl:justify-between 2xl:gap-12'>
