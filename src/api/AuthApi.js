@@ -6,4 +6,7 @@ const loginAdmin = async (username, password) =>{
 const loginCheckLogin = async()=>{
     return await api.get('/auth/success');
 }
-export {loginCheckLogin, loginAdmin}
+const logout = async()=>{
+    return await api.get('/auth/logout');
+}
+export {loginCheckLogin, loginAdmin, logout}

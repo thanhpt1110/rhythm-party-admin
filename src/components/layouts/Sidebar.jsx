@@ -4,6 +4,7 @@ import { DASHBOARD_SIDEBAR_BOTTOM_LINKS, DASHBOARD_SIDEBAR_LINKS } from '../cons
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import Swal from 'sweetalert2';
+import { logout } from 'api/AuthApi';
 
 const linkClass = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-violet-800 hover:no-underline hover:text-white focus:bg-violet-800 active:bg-violet-800 rounded-lg';
 const buttonLogoutClass = 'cursor-pointer flex items-center gap-2 text-red-500 font-light px-3 py-2 mb-3 hover:bg-red-500 hover:no-underline hover:text-white focus:bg-red-500 active:bg-red-500 rounded-lg'
@@ -21,11 +22,20 @@ const Sidebar = () => {
             cancelButtonColor: "#d33",
             cancelButtonText: "No",
             confirmButtonText: "Yes"
-        }).then((result) => {
+        }).then(async (result) => {
             console.log(result);
             if (result.isConfirmed) {
                 console.log("Confirmed")
-                navigate('/login');
+                const respone = await logout();
+                if(respone.status === 200)
+                {
+                    Swal.fire({
+                        title: "Log out",
+                        text: "Log out success",
+                        icon: "success"});
+                    window.open('http://localhost:3001','self')
+
+                }
             }
         });
     }
