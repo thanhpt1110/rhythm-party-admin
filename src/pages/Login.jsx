@@ -1,10 +1,34 @@
-import React from 'react';
+import { loginAdmin } from 'api/AuthApi';
+import { useAuth } from 'contexts/AuthContext';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-    const handleSignIn = () => {
-        console.log('Handle sign in');
+    const [username, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+    const {authUser,setAuthUser} = useAuth();
+    const navigate = useNavigate();
+    const handleSignIn = async () => {
+      const respone =  await loginAdmin(username,password);
+      if(respone.status === 200)
+      {
+        setAuthUser(respone.dataRespone.data);
+        window.open('http://localhost:3001','self')
+      }
+      else{
+        alert("Login failed");
+      }
     }
-
+    useEffect(()=>{
+        if(authUser)
+          navigate('/')
+    },[])
+    const handleUserNameOnchange = (e)=>{
+        setUserName(e.target.value);
+    }
+    const handlePasswordOnchange = (e)=>{
+        setPassword(e.target.value);
+    }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
@@ -17,11 +41,11 @@ const LoginPage = () => {
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="username" className="sr-only">Username</label>
-                            <input id="username" name="username" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username" />
+                            <input id="username" value={username} onChange={handleUserNameOnchange} name="username" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username" />
                         </div>
                         <div>
                             <label htmlFor="password" className="sr-only">Password</label>
-                            <input id="password" name="password" type="password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
+                            <input id="password" name="password" type="password" value={password} onChange={handlePasswordOnchange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
                         </div>
                     </div>
 

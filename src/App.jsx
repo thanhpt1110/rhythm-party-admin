@@ -1,6 +1,6 @@
 import 'remixicon/fonts/remixicon.css'
 import 'flowbite'
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import Dashboard from './components/contents/Dashboard';
 import Login from './pages/Login';
@@ -13,7 +13,7 @@ import Artist from './components/contents/Artist';
 import Room from './components/contents/Room';
 import Setting from './components/contents/Setting';
 import Support from './components/contents/Support';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserProvider } from 'contexts/UserContext';
 import { SongProvider } from 'contexts/SongContext';
 import { ArtistProvider } from 'contexts/ArtistContext';
@@ -21,7 +21,10 @@ import { RoomProvider } from 'contexts/RoomContext';
 import { PlaylistProvider } from 'contexts/PlaylistContext';
 import { PendingApprovalProvider } from 'contexts/PendingApprovalContext';
 import { loginCheckLogin } from 'api/AuthApi';
+import { useAuth } from 'contexts/AuthContext';
 function App() {
+    const [isLoading, setIsLoading] = useState(true)
+    const {authUser,setAuthUser} = useAuth();
     useEffect(()=>{
         const checkLogin = async() =>{
             try{
@@ -30,10 +33,13 @@ function App() {
                 if(respone.status===200)
                 {
                     console.log("Success");
+                    //respone.dataRespone.user.user
+                    await setAuthUser(respone);
+                    localStorage.setItem('accessToken', respone.dataRespone.user.user.accessToken)
                 }
                 else if(respone.status === 401)
                 {
-                    console.log("Un authorized")
+                    console.log("Unauthorized")
                 }
                 else
                     console.log("error")
@@ -42,12 +48,19 @@ function App() {
             {
                 console.log(e)
             }
+            finally{
+                setIsLoading(false)
+            }
         }
         checkLogin();
-    })
+    },[])
     return (
+        isLoading ?  (
+            <div className='text-center w-screen h-screen py-60'>
+                <span className="loader h-20 w-20 "></span>
+            </div> ) :
         <Routes>
-            <Route path='/' element={<Layout />}>
+            <Route path='/' element={authUser ? <Layout /> : <Navigate to='/login'/>}>
                 <Route index element={<Dashboard />} />
                 <Route path='inboxes' element={<Inbox />} />
                 <Route path='pending-approval' element={
@@ -55,35 +68,36 @@ function App() {
                         <PendingApproval />
                     </PendingApprovalProvider>
                 } />
-                <Route path='users' element={
-                    <UserProvider>
+                <Route path='users' element={ authUser ?
+                    (<UserProvider>
                         <User />
-                    </UserProvider>
+                    </UserProvider>) : <Navigate to='/login'/>
                 } />
-                <Route path='songs' element={
+                <Route path='songs' element={authUser ? (
                     <SongProvider>
                         <Song />
-                    </SongProvider>
+                    </SongProvider>) : <Navigate to='/login'/>
                 } />
-                <Route path='playlist' element={
+                <Route path='playlist' element={authUser ?(
                     <PlaylistProvider>
                         <Playlist />
-                    </PlaylistProvider>
+                    </PlaylistProvider>): <Navigate to='/login'/>
                 } />
-                <Route path='artists' element={
+                <Route path='artists' element={authUser ?(
                     <ArtistProvider>
                         <Artist />
-                    </ArtistProvider>
+                    </ArtistProvider>): <Navigate to='/login'/>
                 } />
                 <Route path='rooms' element={
+                    authUser ? (
                     <RoomProvider>
                         <Room />
-                    </RoomProvider>
+                    </RoomProvider>): <Navigate to = '/login'/>
                 } />
-                <Route path='settings' element={<Setting />} />
-                <Route path='support' element={<Support />} />
+                <Route path='settings' element={authUser ? <Setting /> : <Navigate to='/login'/>} />
+                <Route path='support' element={authUser ? <Support />: <Navigate to='/login'/>} />
             </Route>
-            <Route path='login' element={<Login />} />
+            <Route path='login' element={authUser ? <Navigate to= '/'/> :<Login />} />
         </Routes>
     );
 }
