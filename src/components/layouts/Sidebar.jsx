@@ -25,16 +25,10 @@ const Sidebar = () => {
         }).then(async (result) => {
             console.log(result);
             if (result.isConfirmed) {
-                console.log("Confirmed")
                 const respone = await logout();
                 if(respone.status === 200)
                 {
-                    Swal.fire({
-                        title: "Log out",
-                        text: "Log out success",
-                        icon: "success"});
-                    window.open('http://localhost:3001','self')
-
+                    window.location.href = 'http://localhost:3001';
                 }
             }
         });

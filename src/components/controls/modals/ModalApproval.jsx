@@ -5,6 +5,7 @@ import { PendingApprovalContext } from 'contexts/PendingApprovalContext';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ButtonOk from '../buttons/ButtonOk';
 import Select from 'react-select'
+import { toast } from 'react-toastify';
 
 const ModalApproval = ({ onClose }) => {
     const { handleSaveData } = useContext(PendingApprovalContext);
@@ -97,8 +98,14 @@ const ModalApproval = ({ onClose }) => {
     }
 
     const handleSave = () => {
-        handleSaveData();
-        onClose();
+        try {
+            handleSaveData();
+            toast.success('Approve song successful!');
+        } catch (error) {
+            toast.error(error);
+        } finally {
+            onClose();
+        }
     };
 
     return (

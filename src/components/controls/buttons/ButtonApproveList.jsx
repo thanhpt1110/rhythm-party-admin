@@ -1,6 +1,7 @@
 import { GlobalContext } from 'contexts/GlobalContext';
 import { PendingApprovalContext } from 'contexts/PendingApprovalContext';
 import React, { useContext } from 'react'
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 
 const ButtonApproveList = () => {
@@ -20,7 +21,12 @@ const ButtonApproveList = () => {
                 cancelButtonText: "Cancel",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    handleApproveList();
+                    try {
+                        handleApproveList();
+                        toast.success('Approve songs successful!');
+                    } catch (error) {
+                        toast.error(error);
+                    }
                 }
             });
         } else {

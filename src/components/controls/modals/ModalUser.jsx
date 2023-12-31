@@ -4,6 +4,7 @@ import ButtonCancel from '../buttons/ButtonCancel';
 import { UserContext } from 'contexts/UserContext';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ButtonOk from '../buttons/ButtonOk';
+import { toast } from 'react-toastify';
 
 const ModalUser = ({ onClose }) => {
     const { handleSaveData } = useContext(UserContext);
@@ -15,8 +16,14 @@ const ModalUser = ({ onClose }) => {
     const [status, setStatus] = useState('Available')
 
     const handleSave = () => {
-        handleSaveData();
-        onClose();
+        try {
+            handleSaveData();
+            toast.success('Save data successful!');
+        } catch (error) {
+            toast.error(error);
+        } finally {
+            onClose();
+        }
     };
 
     return (

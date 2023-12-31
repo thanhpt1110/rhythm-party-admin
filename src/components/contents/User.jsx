@@ -10,18 +10,20 @@ import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 
 const User = () => {
     const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
-    const {isDataChange, setDataChange, handleSearchData, handleExportData} = useContext(UserContext);
+    const { isDataChange, setDataChange, handleSearchData, handleExportData } = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState('');
     const columns = ['Username', 'Email', 'Gender', 'Status'];
     const data = [
-        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'asghunter', Email: 'asghunter@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'thanhpt110', Email: 'thanhpt1110@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'asghunter', Email: 'hunterasg@gmail.com', Gender: 'Female', Status: 'Banned' },
+        { Username: 'thanhpt110', Email: 'ptthanh110@gmail.com', Gender: 'Female', Status: 'Available' },
+        { Username: 'user123', Email: 'user123@gmail.com', Gender: 'Male', Status: 'Available' },
+        { Username: 'johndoe', Email: 'johndoe@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'janedoe', Email: 'janedoe@gmail.com', Gender: 'Female', Status: 'Available' },
+        { Username: 'admin1', Email: 'admin1@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'admin2', Email: 'admin2@gmail.com', Gender: 'Female', Status: 'Available' },
+        { Username: 'guest1', Email: 'guest1@gmail.com', Gender: 'Male', Status: 'Banned' },
+        { Username: 'guest2', Email: 'guest2@gmail.com', Gender: 'Female', Status: 'Available' },
+        { Username: 'testuser', Email: 'testuser@gmail.com', Gender: 'Male', Status: 'Banned' }
     ];
 
     useEffect(() => {
@@ -34,8 +36,8 @@ const User = () => {
             // Load userContext.data here ...
             // After loading data, set DataChange back to false
             setDataChange(false);
-        } 
-    }, [isDataChange, setDataChange]);      
+        }
+    }, [isDataChange, setDataChange]);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -43,7 +45,7 @@ const User = () => {
                 handleSearchData(searchTerm);
             }
         }, 500); // Delay in milliseconds 
-        
+
         return () => clearTimeout(timeoutId);
     }, [searchTerm, handleSearchData]);
 

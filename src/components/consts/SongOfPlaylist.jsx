@@ -11,7 +11,7 @@ function formatTime(seconds) {
 }
 const SongOfPlaylist = ({ order, song, listOfSong, isOwner, onDeleteMusic }) => {
     const [isLiked, setIsLiked] = useState(false);
-    const { modalMode } = useContext(GlobalContext);
+    const { modalMode, contextType } = useContext(GlobalContext);
     // const [isCurrentPlaying, setIsCurrentPlaying] = useState(false);
     // const handlePlayIconClick = async() => {
     //     await setListOfSong(listOfSong)
@@ -41,7 +41,7 @@ const SongOfPlaylist = ({ order, song, listOfSong, isOwner, onDeleteMusic }) => 
         });
     };
     return (
-        <div className={`text-black pl-12 items-center text-left justify-center rounded py-4 hover:bg-gray-300 ${modalMode === 'info' ? 'grid grid-cols-2' : 'grid grid-cols-3'}`}>
+        <div className={`text-black pl-12 items-center text-left justify-center rounded py-4 hover:bg-gray-300 ${modalMode === 'info' || contextType === 'artist' ? 'grid grid-cols-2' : 'grid grid-cols-3'}`}>
             <div className='flex items-centers gap-4 '>
                 <p className='text-black'>{order + 1}.</p>
                 <img className='ml-2 h-14 w-14 rounded object-cover' src={song.imgUrl} alt='' />
@@ -51,7 +51,7 @@ const SongOfPlaylist = ({ order, song, listOfSong, isOwner, onDeleteMusic }) => 
                 </div>
             </div>
             <p className='text-sm text-gray-600 ml-12'>{formatTime(song.duration)}</p>
-            {isOwner && modalMode !== 'info' && (<i className="ri-delete-bin-6-line text-gray-600 cursor-pointer" onClick={handleDeleteFromPlaylist}></i>)}
+            {isOwner && modalMode !== 'info' && contextType !== 'artist' && (<i className="ri-delete-bin-6-line text-gray-600 cursor-pointer" onClick={handleDeleteFromPlaylist}></i>)}
         </div>
     );
 };

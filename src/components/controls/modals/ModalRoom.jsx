@@ -4,14 +4,21 @@ import ButtonCancel from '../buttons/ButtonCancel';
 import { RoomContext } from 'contexts/RoomContext';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ButtonOk from '../buttons/ButtonOk';
+import { toast } from 'react-toastify';
 
 const ModalRoom = ({ onClose }) => {
     const { handleSaveData } = useContext(RoomContext);
     const { modalMode } = useContext(GlobalContext);
 
     const handleSave = () => {
-        handleSaveData();
-        onClose();
+        try {
+            handleSaveData();
+            toast.success('Save data successful!');
+        } catch (error) {
+            toast.error(error);
+        } finally {
+            onClose();
+        }
     };
 
     return (

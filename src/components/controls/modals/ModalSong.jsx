@@ -5,6 +5,7 @@ import { GlobalContext } from 'contexts/GlobalContext';
 import ButtonOk from '../buttons/ButtonOk';
 import Select from 'react-select'
 import { SongContext } from 'contexts/SongContext';
+import { toast } from 'react-toastify';
 
 const ModalSong = ({ onClose }) => {
     const { handleSaveData } = useContext(SongContext);
@@ -93,8 +94,14 @@ const ModalSong = ({ onClose }) => {
     };
 
     const handleSave = () => {
-        handleSaveData();
-        onClose();
+        try {
+            handleSaveData();
+            toast.success('Save data successful!');
+        } catch (error) {
+            toast.error(error);
+        } finally {
+            onClose();
+        }
     };
 
     return (
@@ -144,7 +151,7 @@ const ModalSong = ({ onClose }) => {
                                 Audio link:
                             </div>
                             <a href={`${audioLink}`} target='blank' className='text-left text-blue-500 text-base hover:underline'>
-                                Goolge song
+                                {musicName}
                             </a>
                         </div>
 
@@ -154,7 +161,7 @@ const ModalSong = ({ onClose }) => {
                                 <span className='text-red-600'>*</span>
                             </div>
                             <input
-                                className={`w-full focus:outline-blue-500 border border-gray-500 mt-0 px-2 rounded py-2 ${modalMode === 'info' ? 'cursor-not-allowed' : ''}`}
+                                className={`text-base font-normal w-full focus:outline-blue-500 border border-gray-500 mt-0 px-2 rounded py-2 ${modalMode === 'info' ? 'cursor-not-allowed' : ''}`}
                                 placeholder={musicName}
                                 value={musicName}
                                 onChange={e => { setMusicName(e.target.value) }}
@@ -168,7 +175,7 @@ const ModalSong = ({ onClose }) => {
                                 </div>
                                 <input
                                     type="text"
-                                    className={`border outline-gray-600 px-2 rounded mt-0 py-2 w-full ${modalMode === 'info' ? 'cursor-not-allowed' : ''}`}
+                                    className={`text-base font-normal border outline-gray-600 px-2 rounded mt-0 py-2 w-full ${modalMode === 'info' ? 'cursor-not-allowed' : ''}`}
                                     value={artist}
                                     onChange={e => { setArtist(e.target.value) }}
                                     required
@@ -200,7 +207,7 @@ const ModalSong = ({ onClose }) => {
                                 value={description}
                                 onChange={e => setDescription(e.target.value)}
                                 name="descriptionSong" id="descriptionSong"
-                                className={`${modalMode === 'info' ? 'cursor-not-allowed' : ''} resize-none h-28 border px-2 rounded mt-2 py-1`}
+                                className={`${modalMode === 'info' ? 'cursor-not-allowed' : ''} text-base font-normal resize-none h-28 border px-2 rounded mt-2 py-1`}
                                 placeholder='Describe your track' cols='20' rows="10"></textarea>
                             <p className='font-bold text-sm mt-4 text-left'>Lyrics</p>
                             <textarea
@@ -208,7 +215,7 @@ const ModalSong = ({ onClose }) => {
                                 value={lyrics}
                                 onChange={e => setLyrics(e.target.value)}
                                 name="lyricSong" id="lyricSong"
-                                className={`${modalMode === 'info' ? 'cursor-not-allowed' : ''} h-60 border px-2 rounded py-1 mt-2`}
+                                className={`${modalMode === 'info' ? 'cursor-not-allowed' : ''} text-base font-normal h-60 border px-2 rounded py-1 mt-2`}
                                 cols="30" rows="10"></textarea>
                             <p className='font-bold text-sm mt-4 text-left'>Privacy</p>
                             <div className="flex mt-2 flex-col gap-1 text-left text-base">

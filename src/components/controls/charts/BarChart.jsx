@@ -24,7 +24,7 @@ const BarChart = ({ data, labels }) => {
             data: {
                 labels,
                 datasets: [{
-                    label: ' Users',
+                    label: ' Online users',
                     data: data, 
                     backgroundColor: 'rgb(96, 49, 206)',
                     borderColor: "rgba(0,0,0,0)",

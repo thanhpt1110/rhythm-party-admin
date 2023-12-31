@@ -8,6 +8,7 @@ import { ArtistContext } from 'contexts/ArtistContext';
 import { RoomContext } from 'contexts/RoomContext';
 import { PlaylistContext } from 'contexts/PlaylistContext';
 import { PendingApprovalContext } from 'contexts/PendingApprovalContext';
+import { toast } from 'react-toastify';
 
 const contextMap = {
     user: UserContext,
@@ -24,8 +25,14 @@ const ModalDeleteList = ({ onClose }) => {
     const { handleDeleteList } = useContext(Context);
 
     const handleSave = () => {
-        handleDeleteList();
-        onClose();
+        try {
+            handleDeleteList();
+            toast.success('Delete data successful!');
+        } catch (error) {
+            toast.error(error);
+        } finally {
+            onClose();
+        }
     };
 
     return (
