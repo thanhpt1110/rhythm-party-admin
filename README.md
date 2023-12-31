@@ -8,9 +8,7 @@ A website that provides an user-friendly interface for administrators to manage 
 - Song management.
 - Playlist management.
 - Artist management.
-- Room management.
 - User management.
-- User feedback.
 - Send reports/feedback to developer team.
 - And other features.
 
