@@ -14,7 +14,6 @@ const LoginPage = () => {
             if (respone.status === 200) {
                 setAuthUser(respone.dataRespone.data);
                 window.location.href = 'http://localhost:3001';
-                // window.open('http://localhost:3001', 'self')
             }
             else {
                 alert("Login failed");
