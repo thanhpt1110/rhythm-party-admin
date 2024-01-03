@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify';
 
 const PendingApproval = () => {
     const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
-    const { isDataChange, setDataChange, handleSearchData, handleExportData } = useContext(PendingApprovalContext);
+    const { pendingApprovalList, handleLoadData, isDataChange, setDataChange, handleSearchData, handleExportData } = useContext(PendingApprovalContext);
     const [searchTerm, setSearchTerm] = useState('');
 
     const columns = ['PendingApproval', 'Artist', 'Genre', 'Likes', 'Comments'];
@@ -34,10 +34,14 @@ const PendingApproval = () => {
         setSelectedItems([]);
     }, []);
 
+    // Load list after change
+    useEffect(() => {
+        console.log(pendingApprovalList)
+    }, [pendingApprovalList]);
+
     useEffect(() => {
         if (isDataChange) {
-            // Load userContext.data here ...
-            // After loading data, set DataChange back to false
+            handleLoadData();
             setDataChange(false);
         }
     }, [isDataChange, setDataChange]);

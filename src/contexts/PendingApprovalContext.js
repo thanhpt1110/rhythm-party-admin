@@ -1,13 +1,20 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import CRUDContext from "./CRUDContext";
 import { GlobalContext } from "./GlobalContext";
-
+import { getAllPendingApproval, searchPendingApproval } from "api/MusicApi";
 // @ts-ignore
 export const PendingApprovalContext = createContext();
 
 export const PendingApprovalProvider = ({ children }) => {
-	const handleLoadData = () => {
-		console.log("Load initial data");
+    const [pendingApprovalList, setPendingApprovalList] = useState([]);
+
+	const handleLoadData = async () => {
+        try {
+            const response = await getAllPendingApproval();
+            setPendingApprovalList(response.dataRes.data)
+        } catch (error) {
+            alert(error)
+        }
 	};
 
     const handleCreateData = () => {
@@ -22,8 +29,14 @@ export const PendingApprovalProvider = ({ children }) => {
 		console.log("Delete data from Pending Approval: ", currentItem);
 	};  
 
-	const handleSearchData = (searchTerm) => {
-		console.log(`Fetch data base on ${searchTerm}`);
+	const handleSearchData = async (searchTerm) => {
+        try {
+            const response = await searchPendingApproval(searchTerm);
+            console.log(response)
+            //console.log(`Fetch data base on ${searchTerm}`);
+        } catch (error) {
+            alert(error)
+        }
 	};
 
     const handleExportData = () => {
@@ -50,6 +63,7 @@ export const PendingApprovalProvider = ({ children }) => {
             handleDeleteList, 
         ),
         handleApproveList,
+        pendingApprovalList,
     };
     
 	return (

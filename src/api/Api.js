@@ -30,7 +30,7 @@ const api = {
         return responeData;
     }
     const dataRes = await response.json();
-    const responeData = {status: response.status, dataRespone: dataRes};
+    const responeData = {status: response.status, dataRes: dataRes};
     return responeData;
   } 
   catch(error) {

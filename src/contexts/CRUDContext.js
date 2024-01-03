@@ -21,7 +21,8 @@ const CRUDContext = (loadData, createData, updateData, deleteData, searchData, e
 	};
 
 	const handleDeleteData = () => {
-		deleteData(currentItem);
+		deleteData(currentItem);       
+        setDataChange(true); 
 	};
 
 	const handleSearchData = (searchTerm) => {
