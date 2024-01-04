@@ -1,12 +1,20 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import CRUDContext from "./CRUDContext";
+import { getAllPlaylist, searchPlaylist } from "api/PlaylistApi";
 
 // @ts-ignore
 export const PlaylistContext = createContext();
 
 export const PlaylistProvider = ({ children }) => {
-	const handleLoadData = () => {
-		console.log("Load initial data");
+	const [playlistList, setPlaylistList] = useState([]);
+    
+    const handleLoadData = async () => {
+        try {
+            const response = await getAllPlaylist();
+            setPlaylistList(response.dataRes.data)
+        } catch (error) {   
+            alert(error)
+        }
 	};
 
 	const handleCreateData = () => {
@@ -21,8 +29,13 @@ export const PlaylistProvider = ({ children }) => {
 		console.log("Delete data from Playlist: ", currentItem);
 	};  
 
-	const handleSearchData = (searchTerm) => {
-		console.log(`Fetch data base on ${searchTerm}`);
+	const handleSearchData = async (searchTerm) => {
+		try {
+            const response = await searchPlaylist(searchTerm);
+            setPlaylistList(response.dataRes.data)
+        } catch (error) {
+            alert(error)
+        }
 	};
 
     const handleExportData = () => {
@@ -33,15 +46,18 @@ export const PlaylistProvider = ({ children }) => {
         console.log(selectedItems);
     }
 
-	const contextValue = CRUDContext(
-		handleLoadData,
-        handleCreateData,
-		handleUpdateData,
-		handleDeleteData,
-		handleSearchData, 
-        handleExportData, 
-        handleDeleteList, 
-	);
+    const contextValue = {
+        ...CRUDContext(
+            handleLoadData,
+            handleCreateData,
+            handleUpdateData,
+            handleDeleteData,
+            handleSearchData,
+            handleExportData,
+            handleDeleteList,
+        ),
+        playlistList,
+    };
     
 	return (
 		<PlaylistContext.Provider value={contextValue}>

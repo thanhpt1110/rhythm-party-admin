@@ -2,7 +2,12 @@ import React, { memo } from 'react'
 
 const SearchBox = ({ onSearch }) => {
     const handleInputChange = (event) => {
-        onSearch(event.target.value);
+        const searchTerm = event.target.value;
+        if (searchTerm === ''){
+            onSearch('')
+        }
+        else 
+            onSearch(searchTerm);
     };
 
     return (

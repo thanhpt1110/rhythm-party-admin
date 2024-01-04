@@ -8,11 +8,12 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const { authUser, setAuthUser } = useAuth();
     const navigate = useNavigate();
-    const handleSignIn = async () => {
+    const handleSignIn = async (e) => {
+        e.preventDefault(); // Prevent the default form submission
         try {
-            const respone = await loginAdmin(username, password);
-            if (respone.status === 200) {
-                setAuthUser(respone.dataRespone.data);
+            const response = await loginAdmin(username, password);
+            if (response.status === 200) {
+                setAuthUser(response.dataRespone.data);
                 window.location.href = 'http://localhost:3001';
             }
             else {
@@ -40,7 +41,7 @@ const LoginPage = () => {
                         Console <span className='text-violet-800'>Rhythm Party</span>
                     </h2>
                 </div>
-                <form className="mt-8 space-y-6">
+                <form className="mt-8 space-y-6" onSubmit={handleSignIn}>
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="username" className="sr-only">Username</label>
@@ -61,7 +62,7 @@ const LoginPage = () => {
                     </div>
 
                     <div>
-                        <button type="button" onClick={handleSignIn} className="group relative w-full flex justify-center 
+                        <button type="submit" className="group relative w-full flex justify-center 
                         py-2 px-4 border border-transparent text-sm font-medium 
                         rounded-md text-white
                         bg-indigo-600 hover:bg-indigo-700 
@@ -76,3 +77,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+    

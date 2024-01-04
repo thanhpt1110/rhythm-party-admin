@@ -9,41 +9,33 @@ import ModalSong from 'components/controls/modals/ModalSong';
 import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 
 const Song = () => {
-    const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
-    const { isDataChange, setDataChange, handleSearchData, handleExportData } = useContext(SongContext);
+    const { setContextType, setSelectedItems } = useContext(GlobalContext);
+    const { songList, handleLoadData, handleSearchData, handleExportData } = useContext(SongContext);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const columns = ['Song', 'Artist', 'Genre', 'Likes', 'Comments'];
-    const data = [
-        { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
-        { Song: 'Thích Em Hơi Nhiều', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' },
-        { Song: 'Yên', Artist: 'Hoàng Dũng', Genre: 'Pop', Likes: '125', Comments: '12' },
-        { Song: 'Từng Quen', Artist: 'Wren Evans', Genre: 'Pop', Likes: '125', Comments: '12' }
-        // Thêm các đối tượng khác vào đây
-    ];
+    const columns = ['Song', 'Artist', 'Genre', 'Privacy', 'Upload date', 'Upload by'];
 
     useEffect(() => {
         setContextType('song');
         setSelectedItems([]);
     }, []);
 
+    // Load list after change
     useEffect(() => {
-        if (isDataChange) {
-            // Load userContext.data here ...
-            // After loading data, set DataChange back to false
-            setDataChange(false);
-        }
-    }, [isDataChange, setDataChange]);
+        console.log('Current data: ', songList)
+    }, [songList]);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            if (searchTerm) {
+            if (searchTerm === '') {
+                handleLoadData()
+            } else {
                 handleSearchData(searchTerm);
             }
         }, 500); // Delay in milliseconds 
 
         return () => clearTimeout(timeoutId);
-    }, [searchTerm, handleSearchData]);
+    }, [searchTerm]);
 
     return (
         <div className='flex flex-col'>
@@ -58,7 +50,7 @@ const Song = () => {
                     <ButtonExport onClick={handleExportData} />
                 </div>
             </div>
-            <DataTable columns={columns} data={data} />
+            <DataTable columns={columns} data={songList} />
         </div>
     );
 };

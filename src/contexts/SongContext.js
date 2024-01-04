@@ -1,13 +1,21 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import CRUDContext from "./CRUDContext";
+import { getAllMusic, searchAllMusic } from "api/MusicApi";
 
 // @ts-ignore
 export const SongContext = createContext();
 
 export const SongProvider = ({ children }) => {
-	const handleLoadData = () => {
-		console.log("Load initial data");
-	};
+	const [songList, setSongList] = useState([])
+    
+    const handleLoadData = async () => {
+        try {
+            const response = await getAllMusic();
+            setSongList(response.dataRes.data)
+        } catch (error) {   
+            alert(error)
+        }
+    };
 
 	const handleCreateData = () => {
 		console.log("Save data from Add Song");
@@ -21,8 +29,13 @@ export const SongProvider = ({ children }) => {
 		console.log("Delete data from Song: ", currentItem);
 	};  
 
-	const handleSearchData = (searchTerm) => {
-		console.log(`Fetch data base on ${searchTerm}`);
+	const handleSearchData = async (searchTerm) => {
+		try {
+            const response = await searchAllMusic(searchTerm);
+            setSongList(response.dataRes.data)
+        } catch (error) {
+            alert(error)
+        }
 	};
 
     const handleExportData = () => {
@@ -33,15 +46,18 @@ export const SongProvider = ({ children }) => {
         console.log(selectedItems);
     }
 
-	const contextValue = CRUDContext(
-		handleLoadData,
-        handleCreateData,
-		handleUpdateData,
-		handleDeleteData,
-		handleSearchData, 
-        handleExportData, 
-        handleDeleteList, 
-	);
+    const contextValue = {
+        ...CRUDContext(
+            handleLoadData,
+            handleCreateData,
+            handleUpdateData,
+            handleDeleteData,
+            handleSearchData,
+            handleExportData,
+            handleDeleteList,
+        ),
+        songList,
+    };
 
 	return (
 		<SongContext.Provider value={contextValue}>

@@ -9,22 +9,10 @@ import { GlobalContext } from 'contexts/GlobalContext';
 import ButtonDeleteList from 'components/controls/buttons/ButtonDeleteList';
 
 const User = () => {
-    const { setContextType, selectedItems, setSelectedItems } = useContext(GlobalContext);
-    const { isDataChange, setDataChange, handleSearchData, handleExportData } = useContext(UserContext);
+    const { setContextType, setSelectedItems } = useContext(GlobalContext);
+    const { userList, handleLoadData, handleSearchData, handleExportData } = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState('');
-    const columns = ['Username', 'Email', 'Gender', 'Status'];
-    const data = [
-        { Username: 'asghunter', Email: 'hunterasg@gmail.com', Gender: 'Female', Status: 'Banned' },
-        { Username: 'thanhpt110', Email: 'ptthanh110@gmail.com', Gender: 'Female', Status: 'Available' },
-        { Username: 'user123', Email: 'user123@gmail.com', Gender: 'Male', Status: 'Available' },
-        { Username: 'johndoe', Email: 'johndoe@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'janedoe', Email: 'janedoe@gmail.com', Gender: 'Female', Status: 'Available' },
-        { Username: 'admin1', Email: 'admin1@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'admin2', Email: 'admin2@gmail.com', Gender: 'Female', Status: 'Available' },
-        { Username: 'guest1', Email: 'guest1@gmail.com', Gender: 'Male', Status: 'Banned' },
-        { Username: 'guest2', Email: 'guest2@gmail.com', Gender: 'Female', Status: 'Available' },
-        { Username: 'testuser', Email: 'testuser@gmail.com', Gender: 'Male', Status: 'Banned' }
-    ];
+    const columns = ['Name', 'Email', 'Role', 'Gender', 'Create date'];
 
     useEffect(() => {
         setContextType('user');
@@ -32,22 +20,20 @@ const User = () => {
     }, []);
 
     useEffect(() => {
-        if (isDataChange) {
-            // Load userContext.data here ...
-            // After loading data, set DataChange back to false
-            setDataChange(false);
-        }
-    }, [isDataChange, setDataChange]);
+        console.log('Current data: ', userList)
+    }, [userList]);
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            if (searchTerm) {
+            if (searchTerm === '') {
+                handleLoadData()
+            } else {
                 handleSearchData(searchTerm);
             }
         }, 500); // Delay in milliseconds 
 
         return () => clearTimeout(timeoutId);
-    }, [searchTerm, handleSearchData]);
+    }, [searchTerm]);
 
     return (
         <div className='flex flex-col'>
@@ -62,7 +48,7 @@ const User = () => {
                     <ButtonExport onClick={handleExportData} />
                 </div>
             </div>
-            <DataTable columns={columns} data={data} />
+            <DataTable columns={columns} data={userList} />
         </div>
     );
 };

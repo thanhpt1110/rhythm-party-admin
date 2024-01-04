@@ -1,13 +1,19 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import CRUDContext from "./CRUDContext";
+import { getAllUser, searchUser } from "api/UserApi";
 
 // @ts-ignore
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-
-    const handleLoadData = () => {
-		console.log("Load initial data");
+    const [userList, setUserList] = useState([])
+    const handleLoadData = async () => {
+        try {
+            const response = await getAllUser();
+            setUserList(response.dataRes.data)
+        } catch (error) {   
+            alert(error)
+        }
 	};
 
 	const handleCreateData = () => {
@@ -22,8 +28,13 @@ export const UserProvider = ({ children }) => {
 		console.log("Delete data from User: ", currentItem);
 	};
 
-	const handleSearchData = (searchTerm) => {
-		console.log(`Fetch data base on ${searchTerm}`);
+	const handleSearchData = async (searchTerm) => {
+        try {
+            const response = await searchUser(searchTerm);
+            setUserList(response.dataRes.data)
+        } catch (error) {
+            alert(error)
+        }
 	};
 
     const handleExportData = () => {
@@ -34,15 +45,18 @@ export const UserProvider = ({ children }) => {
         console.log(selectedItems);
     }
 
-	const contextValue = CRUDContext(
-		handleLoadData,
-        handleCreateData,
-		handleUpdateData,
-		handleDeleteData,
-		handleSearchData, 
-        handleExportData, 
-        handleDeleteList, 
-	);
+    const contextValue = {
+        ...CRUDContext(
+            handleLoadData,
+            handleCreateData,
+            handleUpdateData,
+            handleDeleteData,
+            handleSearchData,
+            handleExportData,
+            handleDeleteList,
+        ),
+        userList,
+    };
 
 	return (
 		<UserContext.Provider value={contextValue}>

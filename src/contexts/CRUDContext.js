@@ -17,12 +17,12 @@ const CRUDContext = (loadData, createData, updateData, deleteData, searchData, e
         } else if (modalMode === 'update') {
             updateData(currentItem);
         }
-		setDataChange(true);
+		//setDataChange(true);
 	};
 
 	const handleDeleteData = () => {
 		deleteData(currentItem);       
-        setDataChange(true); 
+        //setDataChange(true); 
 	};
 
 	const handleSearchData = (searchTerm) => {

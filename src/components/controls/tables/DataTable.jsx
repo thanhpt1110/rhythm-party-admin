@@ -74,8 +74,8 @@ const DataTable = ({ columns, data }) => {
                         <th key={index}>{col}</th>
                     ))}
                     <th className='w-8' />
-                    <th className='w-32' />
-                    <th className='w-40' />
+                    <th className='w-28' />
+                    <th className='w-28 pr-2' />
                 </tr>
             </thead>
             <tbody>
@@ -83,7 +83,7 @@ const DataTable = ({ columns, data }) => {
                     <tr key={index}>
                         <td>
                             <input type="checkbox" className='rounded' checked={selectedItems.includes(index)} onChange={() => handleRowSelection(index)} />
-                        </td>
+                        </td>       
                         {columns.map((col, index) => (
                             <td key={index}>{row[col]}</td>
                         ))}
