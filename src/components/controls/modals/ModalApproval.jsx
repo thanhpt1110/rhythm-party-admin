@@ -43,7 +43,7 @@ const ModalApproval = ({ onClose }) => {
                     setMusicName(music.musicName);
                     setMusicGenre(data);
                     setArtist(music.author);
-                    setMusicImage(music.imgUrl)
+                    setMusicImage(music.imgUrl);
                     setDescription(music.description);
                     setLyrics(music.lyrics);
                     setAudioLink(music.url);
@@ -150,7 +150,8 @@ const ModalApproval = ({ onClose }) => {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        await handleSaveData(currentItem, true);
+                        currentItem.isApprove = true;
+                        await handleSaveData(currentItem);
                         toast.success('Approve songs successful!');
                     } catch (error) {
                         toast.error(error);
@@ -182,16 +183,14 @@ const ModalApproval = ({ onClose }) => {
                                 { display: 'none', }
                             }
                             ref={imageInputRef} />
-                        {!selectedImage ? <div className='cursor-not-allowed flex items-end justify-center w-56 h-56 bg-gradient-to-r from-[#846170] to-[#70929c]'>
-                        </div> :
-                            <div className='relative w-56 h-56'>
-                                <img src={musicImage && musicImage} alt="SongImage" className="rounded object-cover h-56 w-56" />
-                            </div>}
+                        <div className='relative w-56 h-56'>
+                            <img src={musicImage} alt="SongImage" className="rounded object-cover h-56 w-56" />
+                        </div>
                         <div className='text-left mt-6 text-base font-normal'>
                             Audio link: 
                         </div>
                         <a href={`${audioLink}`} target='blank' className='text-left text-blue-500 text-base hover:underline'>
-                            {musicName} song
+                            {musicName}
                         </a>
                     </div>
 
@@ -200,7 +199,7 @@ const ModalApproval = ({ onClose }) => {
                             <p className='font-bold text-sm'>Title</p>
                             <span className='text-red-600'>*</span>
                         </div>
-                        <input className='cursor-not-allowed w-full focus:outline-blue-500 border border-gray-500 mt-0 px-2 rounded py-2'
+                        <input className='text-base font-normal cursor-not-allowed w-full focus:outline-blue-500 border border-gray-500 mt-0 px-2 rounded py-2'
                             placeholder={
                                 musicName
                             }
@@ -213,7 +212,7 @@ const ModalApproval = ({ onClose }) => {
                                 <p className='font-bold text-sm'>Artist</p>
                                 <span className='text-red-600'>*</span>
                             </div>
-                            <input type="text" className='cursor-not-allowed border outline-gray-600 px-2 rounded mt-0 py-2 w-full'
+                            <input type="text" className='text-base font-normal cursor-not-allowed border outline-gray-600 px-2 rounded mt-0 py-2 w-full'
                                 value={artist}
                                 required
                                 readOnly
@@ -243,13 +242,13 @@ const ModalApproval = ({ onClose }) => {
                             readOnly
                             value={description}
                             onChange={e => setDescription(e.target.value)}
-                            name="descriptionSong" id="descriptionSong" className='cursor-not-allowed resize-none h-28 border px-2 rounded mt-2 py-1' placeholder='Describe your track' cols="20" rows="10"></textarea>
+                            name="descriptionSong" id="descriptionSong" className='text-base font-normal cursor-not-allowed resize-none h-28 border px-2 rounded mt-2 py-1' placeholder='Describe your track' cols="20" rows="10"></textarea>
                         <p className='font-bold text-sm mt-4 text-left'>Lyrics</p>
                         <textarea
                             readOnly
                             value={lyrics}
                             onChange={e => setLyrics(e.target.value)}
-                            name="lyricSong" id="lyricSong" className='cursor-not-allowed h-60 border px-2 rounded py-1 mt-2' cols="30" rows="10"></textarea>
+                            name="lyricSong" id="lyricSong" className='text-base font-normal cursor-not-allowed h-60 border px-2 rounded py-1 mt-2' cols="30" rows="10"></textarea>
                         <p className='font-bold text-sm mt-4 text-left'>Privacy</p>
                         <div className="flex mt-2 flex-col gap-1 text-left text-sm ">
                             <div className='cursor-not-allowed'>

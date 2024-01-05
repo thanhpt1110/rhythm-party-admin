@@ -22,8 +22,8 @@ export const PendingApprovalProvider = ({ children }) => {
         console.log("Save data from Add Artist");
     };
 
-    const handleUpdateData = async (currentItem, isApprove) => {
-        const response = isApprove ? await approveSong(currentItem.id) : await denySong(currentItem.id);
+    const handleUpdateData = async (currentItem) => {
+        const response = currentItem.isApprove ? await approveSong(currentItem.id) : await denySong(currentItem.id);
         if(response.status === 200)
         {
             const index = pendingApprovalList.findIndex(item => item.id === currentItem.id);

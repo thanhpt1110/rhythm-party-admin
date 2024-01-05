@@ -27,17 +27,16 @@ const ModalSong = ({ onClose }) => {
     const [showOtherInput, setShowOtherInput] = useState(false);
     const [musicImage, setMusicImage] = useState(null)
     const [isLoading, setIsLoading] = useState(true);
-    useEffect(()=>{
-        const getMusic = async ()=>{
-            try{
+    useEffect(() => {
+        const getMusic = async () => {
+            try {
                 const respone = await getMusicInformation(currentItem.id);
-                if(respone.status === 200)
-                {
-                    const music =respone.dataRes.data;
+                if (respone.status === 200) {
+                    const music = respone.dataRes.data;
                     const data = []
-                    music.genre.map((genre,index)=>{
-                        data.push({label: genre, value: genre})
-                      })
+                    music.genre.map((genre, index) => {
+                        data.push({ label: genre, value: genre })
+                    })
                     setSelectedPrivacy(music.musicPrivacyType);
                     setMusicName(music.musicName);
                     setMusicGenre(data);
@@ -47,23 +46,22 @@ const ModalSong = ({ onClose }) => {
                     setLyrics(music.lyrics);
                     setAudioLink(music.url);
                 }
-                else{
+                else {
                     console.log(respone.status)
                     alert("error")
                 }
             }
-            catch(e)
-            {
+            catch (e) {
                 console.log(e);
                 alert("error")
             }
-            finally{
+            finally {
                 setIsLoading(false)
             }
         }
-        if(currentItem)
+        if (currentItem)
             getMusic();
-    },[])
+    }, [])
 
     const onImageChange = (event) => {
         if (event.target.files.length > 0)
@@ -144,7 +142,7 @@ const ModalSong = ({ onClose }) => {
     };
 
     return (
-       !isLoading && (<div className='fixed inset-0 flex items-center justify-center z-50'>
+        !isLoading && (<div className='fixed inset-0 flex items-center justify-center z-50'>
             <div onClick={onClose} className='fixed inset-0 bg-gray-900 opacity-50'></div>
             <div className='modal-container bg-white w-auto h-[90%] overflow-y-auto rounded-lg p-6 z-50 text-black'>
                 <div className='flex justify-center items-center mb-4 gap-2'>
@@ -161,32 +159,20 @@ const ModalSong = ({ onClose }) => {
                                     { display: 'none' }
                                 }
                                 ref={imageInputRef} />
-                            {!selectedImage ? <div className='flex items-end justify-center w-56 h-56 bg-gradient-to-r from-[#846170] to-[#70929c]'>
-                                {modalMode !== 'info' &&
-                                    <button
-                                        className='mb-4 bg-slate-600 flex rounded-lg items-center px-2 gap-2 py-1'
-                                        type='button'
-                                        onClick={handleImageSelection}
-                                    >
-                                        <i className="ri-camera-line text-white"></i>
-                                        <p className='text-[14px] text-white'>Upload image</p>
-                                    </button>
-                                }
-                            </div> :
-                                <div className='relative w-56 h-56'>
-                                    <img src={URL.createObjectURL(selectedImage)} alt="SongImage" className="rounded object-cover h-56 w-56" />
-                                    {modalMode !== 'info' &&
-                                        <button
-                                            className='mb-4 bg-slate-600 flex rounded-lg items-center px-2 gap-2 py-1'
-                                            type='button'
-                                            onClick={handleImageSelection}
-                                        >
-                                            <i className="ri-camera-line text-white"></i>
-                                            <p className='text-[14px] text-white'>Upload image</p>
-                                        </button>
-                                    }
-                                </div>}
-                            <div className='text-left mt-6 text-base font-normal'>
+                            <div className='relative w-56 h-56 mt-2'>
+                                <img src={selectedImage ? URL.createObjectURL(selectedImage) : musicImage} alt="SongImage" className="rounded object-cover h-56 w-56" />
+                            </div>
+                            {modalMode !== 'info' &&
+                                <button
+                                    className='mb-4 mt-4 w-max bg-slate-600 flex rounded-lg items-center px-2 gap-2 py-1'
+                                    type='button'
+                                    onClick={handleImageSelection}
+                                >
+                                    <i className="ri-camera-line text-white"></i>
+                                    <p className='text-[14px] text-white'>Upload image</p>
+                                </button>
+                            }
+                            <div className='text-left mt-0 text-base font-normal'>
                                 Audio link:
                             </div>
                             <a href={`${audioLink}`} target='blank' className='text-left text-blue-500 text-base hover:underline'>
@@ -291,7 +277,7 @@ const ModalSong = ({ onClose }) => {
                 </div>
             </div>
         </div>
-    ));
+        ));
 };
 
 export default ModalSong;

@@ -10,7 +10,8 @@ const ModalDeny = ({ onClose }) => {
     const handleSave = async () => {
         try {
             try {
-                await handleSaveData(currentItem, false);
+                currentItem.isApprove = false;
+                await handleSaveData(currentItem);
                 toast.success('Deny songs successful!');
             } catch (error) {
                 toast.error(error);
