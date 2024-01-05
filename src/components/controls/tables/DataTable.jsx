@@ -12,6 +12,7 @@ import ModalPlaylist from '../modals/ModalPlaylist'
 import ButtonApprove from '../buttons/ButtonApprove'
 import ButtonInfo from '../buttons/ButtonInfo'
 import ModalApproval from '../modals/ModalApproval'
+import ButtonDeny from '../buttons/ButtonDeny'
 
 const modalMap = {
     user: ModalUser,
@@ -104,7 +105,7 @@ const DataTable = ({ columns, data }) => {
                             {contextType === 'pendingApproval' ? <ButtonApprove item={row} /> : <ButtonUpdate ModalComponent={ModalComponent} item={row} />}
                         </td>
                         <td>
-                            <ButtonDelete ModalComponent={ModalDelete} item={row} />
+                            {contextType === 'pendingApproval' ? <ButtonDeny item={row} /> : <ButtonDelete ModalComponent={ModalDelete} item={row} />}
                         </td>
                     </tr>
                 ))}

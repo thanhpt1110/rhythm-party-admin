@@ -44,7 +44,6 @@ const Playlist = () => {
                     <ButtonDeleteList />
                 </div>
                 <div className='flex flex-row gap-5'>
-                    <ButtonAdd label={'playlist'} ModalComponent={ModalPlaylist} />
                     <ButtonExport onClick={handleExportData} />
                 </div>
             </div>

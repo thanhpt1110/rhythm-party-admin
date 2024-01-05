@@ -149,7 +149,7 @@ const ModalApproval = ({ onClose }) => {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     try {
-                        await handleSaveData(currentItem);
+                        await handleSaveData(currentItem, true);
                         toast.success('Approve songs successful!');
                     } catch (error) {
                         toast.error(error);

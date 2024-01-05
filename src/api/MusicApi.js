@@ -31,9 +31,9 @@ const deleteMusicInformation = async () => {
 const approveSong = async (id) => {
     return await api.put(`/api/music/music-unauthentication/${id}`, {musicAuthorize: "Authorize"})
 }
-const approveList = async (listApproveMusic, authorize) => {
+const approveList = async (listApproveMusic) => {
     const idsToUpdate = listApproveMusic.map(music => music.id);
-    return await api.put(`/api/music/music-unauthentication?approve=${authorize}`,idsToUpdate);
+    return await api.put(`/api/music/music-unauthentication?approve=Authorize`,idsToUpdate);
 }
 const denySong = async (id) => {
     return await api.put(`/api/music/music-unauthentication/${id}`, {musicAuthorize: "Unauthorize"})
@@ -56,5 +56,7 @@ export {
     deleteMusicInformation,
     approveSong,
     approveList,
-    deleteList
+    denyList,
+    deleteList,
+    denySong,
 }
