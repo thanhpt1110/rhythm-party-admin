@@ -27,7 +27,7 @@ const DataTable = ({ columns, data }) => {
     const [selectAll, setSelectAll] = useState(false);
     const [isItemClicked, setIsItemClicked] = useState(false);
 
-    const { contextType, selectedItems, setSelectedItems: setContextSelectedItems } = useContext(GlobalContext);
+    const { contextType, selectedItems, setSelectedItems: setContextSelectedItems, setSelectedData } = useContext(GlobalContext);
     const ModalComponent = useMemo(() => {
         return modalMap[contextType] || modalMap.default;
     }, [contextType]);
@@ -37,6 +37,16 @@ const DataTable = ({ columns, data }) => {
             setContextSelectedItems(items);
         }
     }, [selectedItems, setContextSelectedItems]);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            const selectedData = selectedItems.map(index => data[index]); 
+            setSelectedData(selectedData);
+        }, 500); // Delay in milliseconds 
+    
+        return () => clearTimeout(timeoutId);
+    }, [selectedItems]);
+    
 
     useEffect(() => {
         if (selectAll) {

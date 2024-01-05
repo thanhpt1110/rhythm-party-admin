@@ -13,7 +13,7 @@ const LoginPage = () => {
         try {
             const response = await loginAdmin(username, password);
             if (response.status === 200) {
-                setAuthUser(response.dataRespone.data);
+                setAuthUser(response.dataRes.data);
                 window.location.href = 'http://localhost:3001';
             }
             else {

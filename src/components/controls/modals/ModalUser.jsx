@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ButtonSave from '../buttons/ButtonSave';
 import ButtonCancel from '../buttons/ButtonCancel';
 import { UserContext } from 'contexts/UserContext';
@@ -7,23 +7,41 @@ import ButtonOk from '../buttons/ButtonOk';
 import { toast } from 'react-toastify';
 
 const ModalUser = ({ onClose }) => {
-    const { handleSaveData } = useContext(UserContext);
-    const { modalMode } = useContext(GlobalContext);
+    const { handleSaveData, handleLoadItemInformation } = useContext(UserContext);
+    const { modalMode, currentItem } = useContext(GlobalContext);
 
-    const [username, setUsername] = useState('username')
-    const [email, setEmail] = useState('email@gmail.com')
-    const [gender, setGender] = useState('male')
+    const [displayName, setDisplayName] = useState('')
+    const [email, setEmail] = useState('')
+    const [gender, setGender] = useState('Male')
     const [status, setStatus] = useState('Available')
+
 
     const handleSave = () => {
         try {
-            handleSaveData();
+            if (displayName === '') {
+                toast.error(`Please enter user's display name!`);
+                handleLoadItemInformation();
+                console.log(currentItem)
+                return;
+            }
+            if (email === '') {
+                toast.error(`Please enter user's email!`);
+                return;
+            }
+
+            const regex = /^[a-zA-Z0-9]+@gmail\.com$/;
+            if (!regex.test(email)) {
+                toast.error('Email has to be in format @gmail.com');
+                return;
+            }   
+
+            const user = {displayName: displayName, email: email, gender: gender, isAvailable: status === 'Available' ? true : false}
+            handleSaveData(user);
             toast.success('Save data successful!');
+            onClose();
         } catch (error) {
             toast.error(error);
-        } finally {
-            onClose();
-        }
+        } 
     };
 
     return (
@@ -37,14 +55,14 @@ const ModalUser = ({ onClose }) => {
                 <div className='flex flex-col gap-3'>
                     <div>
                         <div className='flex flex-row gap-1 items-center '>
-                            <p className='font-bold text-sm'>Username</p>
+                            <p className='font-bold text-sm'>Display name</p>
                             <span className='text-red-600'>*</span>
                         </div>
                         <input
                             className={`w-full text-base font-normal focus:outline-blue-500 border border-gray-500 mt-0 px-2 rounded py-2 ${modalMode === 'info' ? 'cursor-not-allowed' : ''}`}
-                            placeholder={username}
-                            value={username}
-                            onChange={e => { setUsername(e.target.value) }}
+                            placeholder={'Tuấn Thành'}
+                            value={displayName}
+                            onChange={e => { setDisplayName(e.target.value) }}
                             required
                             readOnly={modalMode === 'info'}
                         />
@@ -56,7 +74,7 @@ const ModalUser = ({ onClose }) => {
                         </div>
                         <input
                             className={`w-full text-base font-normal focus:outline-blue-500 border border-gray-500 mt-0 px-2 rounded py-2 ${modalMode === 'info' ? 'cursor-not-allowed' : ''}`}
-                            placeholder={email}
+                            placeholder={'user@gmail.com'}
                             value={email}
                             onChange={e => { setEmail(e.target.value) }}
                             required
@@ -75,8 +93,8 @@ const ModalUser = ({ onClose }) => {
                             required
                             disabled={modalMode === 'info'}
                         >
-                            <option value="Female">Female</option>
                             <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
 

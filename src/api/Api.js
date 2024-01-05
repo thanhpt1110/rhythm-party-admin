@@ -26,12 +26,12 @@ const api = {
     });
 
     if (!response.ok) { // if HTTP-status is 401-599
-        const responeData = {status: response.status};
-        return responeData;
+        const responseData = {status: response.status};
+        return responseData;
     }
     const dataRes = await response.json();
-    const responeData = {status: response.status, dataRes: dataRes};
-    return responeData;
+    const responseData = {status: response.status, dataRes: dataRes};
+    return responseData;
   } 
   catch(error) {
     console.log(error); // Logs any network error.
@@ -50,12 +50,12 @@ const api = {
         body: JSON.stringify(data),
       });
       if (!response.ok) { // if HTTP-status is 401-599
-        const responeData = {status: response.status};
-        return responeData;
+        const responseData = {status: response.status};
+        return responseData;
       }
       const dataRes = await response.json();
-      const responeData = {status: response.status, dataRespone: dataRes}
-      return responeData;
+      const responseData = {status: response.status, dataRes: dataRes}
+      return responseData;
     }
     catch(e)
     {
@@ -75,12 +75,12 @@ const api = {
         body: JSON.stringify(data),
       });
       if (!response.ok) { // if HTTP-status is 401-599
-        const responeData = {status: response.status};
-        return responeData;
+        const responseData = {status: response.status};
+        return responseData;
       }
     const dataRes = await response.json();
-    const responeData = {status: response.status, dataRespone: dataRes};
-    return responeData;
+    const responseData = {status: response.status, dataRes: dataRes};
+    return responseData;
     }
    catch(e)
    {
@@ -99,12 +99,12 @@ const api = {
       },
     });
     if (!response.ok) { // if HTTP-status is 401-599
-      const responeData = {status: response.status};
-      return responeData;
+      const responseData = {status: response.status};
+      return responseData;
     }
     const dataRes = await response.json();
-    const responeData = {status: response.status, dataRespone: dataRes}
-    return responeData;
+    const responseData = {status: response.status, dataRes: dataRes}
+    return responseData;
   }
     catch(e)
     {

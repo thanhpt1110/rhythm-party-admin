@@ -8,24 +8,24 @@ const searchUser = async (searchTerm) => {
     return await api.get(`/api/user/search?input_search=${searchTerm}`)
 }
 
-const getUserInformation = async () => {
-
+const getUserInformation = async (id) => {
+    return await api.get(`/api/user/${id}`)
 }
 
-const createUserInformation = async () => {
-    
+const createUserInformation = async (user) => {
+    return await api.post('/api/user/', user)
 }
 
-const updateUserInformation = async () => {
-
+const updateUserInformation = async (id, user) => {
+    return await api.put(`/api/user/${id}`, user)
 }
 
-const deleteUserInformation = async () => {
-
+const deleteUserInformation = async (id) => {
+    return await api.delete(`/api/user/${id}`)
 }
 
-const deleteList = async () => {
-
+const deleteList = async (data) => {
+    return await api.put('/api/user/', data)
 }
 
 export {

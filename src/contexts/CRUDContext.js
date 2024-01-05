@@ -3,26 +3,23 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 
 const CRUDContext = (loadData, createData, updateData, deleteData, searchData, exportData, deleteList) => {
-    const [data, setData] = useState([]);
 	const [isDataChange, setDataChange] = useState(false);
-    const { modalMode, currentItem, selectedItems } = useContext(GlobalContext);
+    const { modalMode } = useContext(GlobalContext);
 
 	const handleLoadData = () => {
 		loadData();
 	};
 
-	const handleSaveData = () => {
+	const handleSaveData = (item) => {
         if (modalMode === 'add') {
-            createData();
+            createData(item);
         } else if (modalMode === 'update') {
-            updateData(currentItem);
+            updateData(item);
         }
-		//setDataChange(true);
 	};
 
 	const handleDeleteData = () => {
-		deleteData(currentItem);       
-        //setDataChange(true); 
+		deleteData();       
 	};
 
 	const handleSearchData = (searchTerm) => {
@@ -34,7 +31,7 @@ const CRUDContext = (loadData, createData, updateData, deleteData, searchData, e
     }
 
     const handleDeleteList = () => { 
-        deleteList(selectedItems);
+        deleteList();
     }
 
 	return {

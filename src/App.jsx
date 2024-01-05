@@ -28,16 +28,15 @@ function App() {
     useEffect(()=>{
         const checkLogin = async() =>{
             try{
-                const respone = await loginCheckLogin();
-                console.log(respone);
-                if(respone.status===200)
+                const response = await loginCheckLogin();
+                console.log(response);
+                if(response.status===200)
                 {
                     console.log("Success");
-                    //respone.dataRespone.user.user
-                    await setAuthUser(respone);
-                    localStorage.setItem('accessToken', respone.dataRes.user.user.accessToken)
+                    await setAuthUser(response);
+                    localStorage.setItem('accessToken', response.dataRes.user.user.accessToken)
                 }
-                else if(respone.status === 401)
+                else if(response.status === 401)
                 {
                     console.log("Unauthorized")
                 }

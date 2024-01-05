@@ -28,10 +28,10 @@ const ModalDeleteList = ({ onClose }) => {
         try {
             handleDeleteList();
             toast.success('Delete data successful!');
+            onClose();
         } catch (error) {
             toast.error(error);
         } finally {
-            onClose();
         }
     };
 
