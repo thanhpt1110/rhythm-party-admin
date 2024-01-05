@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ButtonSave from '../buttons/ButtonSave';
 import ButtonCancel from '../buttons/ButtonCancel';
 import { GlobalContext } from 'contexts/GlobalContext';
@@ -6,11 +6,11 @@ import ButtonOk from '../buttons/ButtonOk';
 import Select from 'react-select'
 import { SongContext } from 'contexts/SongContext';
 import { toast } from 'react-toastify';
+import { getMusicInformation } from 'api/MusicApi';
 
 const ModalSong = ({ onClose }) => {
     const { handleSaveData } = useContext(SongContext);
-    const { modalMode } = useContext(GlobalContext);
-
+    const { modalMode, currentItem } = useContext(GlobalContext);
     const musicInputRef = useRef(null);
     const imageInputRef = useRef(null);
 
@@ -25,6 +25,45 @@ const ModalSong = ({ onClose }) => {
     const [selectedPrivacy, setSelectedPrivacy] = useState('Private');
     const [musicGenre, setMusicGenre] = useState([]);
     const [showOtherInput, setShowOtherInput] = useState(false);
+    const [musicImage, setMusicImage] = useState(null)
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(()=>{
+        const getMusic = async ()=>{
+            try{
+                const respone = await getMusicInformation(currentItem.id);
+                if(respone.status === 200)
+                {
+                    const music =respone.dataRes.data;
+                    const data = []
+                    music.genre.map((genre,index)=>{
+                        data.push({label: genre, value: genre})
+                      })
+                    setSelectedPrivacy(music.musicPrivacyType);
+                    setMusicName(music.musicName);
+                    setMusicGenre(data);
+                    setArtist(music.author);
+                    setMusicImage(music.imgUrl)
+                    setDescription(music.description);
+                    setLyrics(music.lyrics);
+                    setAudioLink(music.url);
+                }
+                else{
+                    console.log(respone.status)
+                    alert("error")
+                }
+            }
+            catch(e)
+            {
+                console.log(e);
+                alert("error")
+            }
+            finally{
+                setIsLoading(false)
+            }
+        }
+        if(currentItem)
+            getMusic();
+    },[])
 
     const onImageChange = (event) => {
         if (event.target.files.length > 0)
@@ -105,7 +144,7 @@ const ModalSong = ({ onClose }) => {
     };
 
     return (
-        <div className='fixed inset-0 flex items-center justify-center z-50'>
+       !isLoading && (<div className='fixed inset-0 flex items-center justify-center z-50'>
             <div onClick={onClose} className='fixed inset-0 bg-gray-900 opacity-50'></div>
             <div className='modal-container bg-white w-auto h-[90%] overflow-y-auto rounded-lg p-6 z-50 text-black'>
                 <div className='flex justify-center items-center mb-4 gap-2'>
@@ -252,7 +291,7 @@ const ModalSong = ({ onClose }) => {
                 </div>
             </div>
         </div>
-    );
+    ));
 };
 
 export default ModalSong;

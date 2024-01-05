@@ -23,7 +23,7 @@ export const PendingApprovalProvider = ({ children }) => {
     };
 
     const handleUpdateData = async (currentItem) => {
-        const respone = await approveSong(currentItem.id,"Authorize");
+        const respone = await approveSong(currentItem.id);
         if(respone.status === 200)
         {
             const index = pendingApprovalList.findIndex(item => item.id === currentItem.id);

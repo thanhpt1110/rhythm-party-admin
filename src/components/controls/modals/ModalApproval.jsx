@@ -27,6 +27,7 @@ const ModalApproval = ({ onClose }) => {
     const [selectedPrivacy, setSelectedPrivacy] = useState('Private');
     const [musicGenre, setMusicGenre] = useState([]);
     const [showOtherInput, setShowOtherInput] = useState(false);
+
     useEffect(()=>{
         const getMusic = async ()=>{
             try{
