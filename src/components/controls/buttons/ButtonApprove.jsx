@@ -18,7 +18,7 @@ const ButtonApprove = ({ item }) => {
 
     return (
         <>
-            <button onClick={handleOpenModal} className=' bg-green-600 text-white rounded-lg border border-zinc-100 px-4 py-2 hover:bg-green-700'>
+            <button onClick={handleOpenModal} className='bg-green-700 text-white rounded-lg border border-zinc-100 px-4 py-2 hover:bg-green-600'>
                 <i className="ri-checkbox-circle-fill xl:mr-2" />
                 <span className='hidden 2xl:inline'>Approve</span>
             </button>

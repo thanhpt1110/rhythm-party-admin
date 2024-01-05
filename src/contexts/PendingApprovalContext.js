@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import CRUDContext from "./CRUDContext";
 import { GlobalContext } from "./GlobalContext";
-import { approveSong, getAllPendingApproval, searchPendingApproval } from "api/MusicApi";
+import { approveSong, denySong, getAllPendingApproval, searchPendingApproval } from "api/MusicApi";
 // @ts-ignore
 export const PendingApprovalContext = createContext();
 
@@ -22,9 +22,9 @@ export const PendingApprovalProvider = ({ children }) => {
         console.log("Save data from Add Artist");
     };
 
-    const handleUpdateData = async (currentItem) => {
-        const respone = await approveSong(currentItem.id);
-        if(respone.status === 200)
+    const handleUpdateData = async (currentItem, isApprove) => {
+        const response = isApprove ? await approveSong(currentItem.id) : await denySong(currentItem.id);
+        if(response.status === 200)
         {
             const index = pendingApprovalList.findIndex(item => item.id === currentItem.id);
             if (index !== -1) {
@@ -64,7 +64,6 @@ export const PendingApprovalProvider = ({ children }) => {
         console.log(selectedItems);
     }
 
-    const { selectedItems } = useContext(GlobalContext)
     const handleApproveList = () => {
         console.log(selectedData)
     }
