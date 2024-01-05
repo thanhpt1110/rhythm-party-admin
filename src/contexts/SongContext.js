@@ -42,8 +42,8 @@ export const SongProvider = ({ children }) => {
 		console.log("Export data successfully");
 	};
 
-    const handleDeleteList = (selectedItems) => {
-        console.log(selectedItems);
+    const handleDeleteList = () => {
+        console.log();
     }
 
     const contextValue = {

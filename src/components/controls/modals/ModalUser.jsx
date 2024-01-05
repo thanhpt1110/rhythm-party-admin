@@ -5,6 +5,7 @@ import { UserContext } from 'contexts/UserContext';
 import { GlobalContext } from 'contexts/GlobalContext';
 import ButtonOk from '../buttons/ButtonOk';
 import { toast } from 'react-toastify';
+import { getUserInformation } from 'api/UserApi';
 
 const ModalUser = ({ onClose }) => {
     const { handleSaveData, handleLoadItemInformation } = useContext(UserContext);
@@ -15,6 +16,19 @@ const ModalUser = ({ onClose }) => {
     const [gender, setGender] = useState('Male')
     const [status, setStatus] = useState('Available')
 
+    useEffect(() => {
+        const fetchUserInformation = async () => {
+            const response = await getUserInformation(currentItem.id);
+            const userInformation = response.dataRes.data;
+
+            setDisplayName(userInformation.displayName)
+            setEmail(userInformation.email)
+            setGender(userInformation.gender)
+            setStatus(userInformation.isAvailable ? 'Available' : 'Banned')
+        };
+        fetchUserInformation();
+    }, []);
+    
 
     const handleSave = () => {
         try {
