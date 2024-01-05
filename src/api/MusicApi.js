@@ -16,8 +16,8 @@ const searchAllMusic = async (searchTerm) => {
     return await api.get(`/api/music/search?input_search=${searchTerm}`)
 }
 
-const getMusicInformation = async () => {
-
+const getMusicInformation = async (id) => {
+    return await api.get(`/api/music/${id}`)
 }
 
 const updateMusicInformation = async () => {
@@ -28,14 +28,20 @@ const deleteMusicInformation = async () => {
 
 }
 
-const approveSong = async () => {
-
+const approveSong = async (id) => {
+    return await api.put(`/api/music/music-unauthentication/${id}`, {musicAuthorize: "Authorize"})
 }
-
-const approveList = async () => {
-
+const approveList = async (listApproveMusic, authorize) => {
+    const idsToUpdate = listApproveMusic.map(music => music.id);
+    return await api.put(`/api/music/music-unauthentication?approve=${authorize}`,idsToUpdate);
 }
-
+const denySong = async (id) => {
+    return await api.put(`/api/music/music-unauthentication/${id}`, {musicAuthorize: "Unauthorize"})
+}
+const denyList = async (listApproveMusic) => {
+    const idsToUpdate = listApproveMusic.map(music => music.id);
+    return await api.put(`/api/music/music-unauthentication?approve=Unauthorize`,idsToUpdate);
+}
 const deleteList = async () => {
 
 }
@@ -50,5 +56,5 @@ export {
     deleteMusicInformation,
     approveSong,
     approveList,
-    deleteList,
+    deleteList
 }
