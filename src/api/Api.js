@@ -3,7 +3,7 @@ const API_URL = 'https://rhythm-party-backend-xi.vercel.app';
 const defaultHeaders = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
-  'Access-Control-Allow-Credentials': true,
+  'Access-Control-Allow-Credentials': 'true',
 };
 
 const getAuthorizationHeader = () => {
