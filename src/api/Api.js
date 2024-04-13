@@ -30,6 +30,7 @@ const api = {
         return responseData;
     }
     const dataRes = await response.json();
+    console.log(dataRes);
     const responseData = {status: response.status, dataRes: dataRes};
     return responseData;
   } 
