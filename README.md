@@ -1,5 +1,5 @@
 # <img src="https://raw.githubusercontent.com/thanhpt1110/rhythm-party-admin/master/src/assets/logo.png" alt="Your Image" width="auto" height="30"> Rhythm Party (Website for Admin)
-A website that provides an user-friendly interface for administrators to manage client's site interactions. It is built using the MVC pattern.
+A website that provides an user-friendly interface for administrators to manage client's site interactions. It is built using the Client-Server architecture.
 
 ## Features
 
@@ -18,6 +18,7 @@ A website that provides an user-friendly interface for administrators to manage 
     - Node.js 20.10.0+
     - MongoDB for database storage.
     - Firebase Storage for file storage.
+    - Vercel for hosting.
 
 - Development environment:
     - Node.js 20.10.0+.
@@ -36,8 +37,14 @@ To install and run the project locally, follow these steps:
 
 ## User Guide
 
-You can simply click this [link]() to get started.
+You can simply click this [link](https://rhythm-party-admin.vercel.app/) to get started.
 
+## User Interface
+![Dashboard](./demo_ui/Dashboard.png)
+
+![Pending approval](./demo_ui/Pending%20approval.png)
+
+![Playlist information](./demo_ui/Playlist%20info.png)
 ## Authors
 
 [Phan Tuấn Thành](https://github.com/thanhpt1110)
