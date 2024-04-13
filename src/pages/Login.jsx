@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+
+    const ADMIN_URL = 'https://rhythm-party-admin.vercel.app'
+
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const { authUser, setAuthUser } = useAuth();
@@ -14,7 +17,7 @@ const LoginPage = () => {
             const response = await loginAdmin(username, password);
             if (response.status === 200) {
                 setAuthUser(response.dataRes.data);
-                window.location.href = 'http://localhost:3001';
+                window.location.href = ADMIN_URL;
             }
             else {
                 alert("Login failed");
